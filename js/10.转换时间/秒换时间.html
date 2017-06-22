@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ffm的时间转换</title>
+</head>
+
+<body>
+    <label>输入秒数:
+        <input type="text">
+    </label>
+    <button id="j-btn">提交</button>
+    <script>
+    window.onload = function() {
+        document.getElementById('j-btn').onclick = function() {
+            // 一天 86400s
+            // 一小时 3600
+            // 一分钟 60s
+            var oInput = document.getElementsByTagName('input')[0];
+            var n = parseInt(oInput.value);
+
+            var d = parseInt(n / 86400); // 天
+            n = n % 86400;
+            var h = parseInt(n / 3600);
+            n = n % 3600; // n%=3600
+            var m = parseInt(n / 60);
+            var s = n % 60;
+            var str = d + '天' + h + '小时' + m + '分钟' + s + '秒';
+
+            alert(str);
+            oInput.value = '';
+        };
+    };
+    </script>
+</body>
+
+</html>

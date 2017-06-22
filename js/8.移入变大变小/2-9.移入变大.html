@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+</head>
+<style>
+*{ padding:0; margin:0; list-style:none;}
+ul { width:630px; height:630px; position:absolute; top:20px; left:50%; margin-left:-315px; padding:0 10px 10px 0; background:#eee;}
+li { width:200px; height:200px; float:left; margin:10px 0 0 10px; position:relative;}
+a { width:200px; height:200px; position:absolute; top: 0; left: 0; }
+a img{ width:200px; height:200px;}
+</style>
+<script>
+	window.onload = function () {
+		var arrPic = document.getElementsByTagName('img');
+		var aLinkPic = document.getElementsByTagName('a');
+		for (var i = arrPic.length - 1; i >= 0; i--) {
+			arrPic[i].style.position = 'absolute';
+
+
+			arrPic[i].onmouseover = function () {
+				this.style.transformOrigin = '50% 50%';
+				this.style.transform = 'scale(1.3,1.3)';
+				this.style.zIndex = 10;
+
+			};
+			arrPic[i].onmouseout = function () {
+				this.style.transformOrigin = '50% 50%';
+				this.style.transform = 'scale(1.0,1.0)';
+				this.style.zIndex = 0;
+			};
+		}
+	};
+</script>
+<body>
+<ul>
+  <li><a href="javascript:;"><img src="psu.jpg" width="400" height="400" /></a></li>
+  <li><a href="javascript:;"><img src="psu.jpg" width="400" height="400" /></a></li>
+  <li><a href="javascript:;"><img src="psu.jpg" width="400" height="400" /></a></li>
+  <li><a href="javascript:;"><img src="psu.jpg" width="400" height="400" /></a></li>
+  <li><a href="javascript:;"><img src="psu.jpg" width="400" height="400" /></a></li>
+  <li><a href="javascript:;"><img src="psu.jpg" width="400" height="400" /></a></li>
+  <li><a href="javascript:;"><img src="psu.jpg" width="400" height="400" /></a></li>
+  <li><a href="javascript:;"><img src="psu.jpg" width="400" height="400" /></a></li>
+  <li><a href="javascript:;"><img src="psu.jpg" width="400" height="400" /></a></li>
+</ul>
+</body>
+</html>

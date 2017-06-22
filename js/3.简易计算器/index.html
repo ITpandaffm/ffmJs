@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>caculator</title>
+	<link rel="stylesheet" href="main.css" type="text/css">
+</head>
+<body>
+	<div class="container">
+		<div class="wrapper">
+			<input type="text" id="input1">
+			<select name="op" id="op">
+				<option value="+">+</option>
+				<option value="-">-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>
+				<option value="%">%</option>
+			</select>
+			<input type="text" id="input2">
+			<span>=</span>
+			<span id="result">result</span>
+			<br>
+			<input type="button" value="caculate" id="button">
+		</div>
+	</div>
+	<script>
+
+		var button = document.getElementById('button');
+		var result = document.getElementById('result');
+
+		function caculate () {
+		// var input1 = parseInt(document.getElementById('input1').value);
+		// var input2 = parseInt(document.getElementById('input2').value);
+		//用parseInt的话，如果数字后面加其他字符，就会被裁掉，
+		var input1 = document.getElementById('input1').value;
+		var input2 = document.getElementById('input2').value;
+
+		if (checkNull(input1) || checkNull(input2)){
+			alert('确保两个输入框输入不为空');
+			return false;
+		} else {
+			input1 = Number(input1);
+			input2 = Number(input2);
+		}
+
+		var op = document.getElementById('op').value;
+			if (checkNum(input1,input2,op)) {
+				var out;
+				switch (op) {
+					case '+':
+						out = input1+input2;
+						break;
+					case '-':
+						out = input1-input2;
+						break;
+					case '*':
+						out = input1*input2;
+						break;
+					case '/':
+						out = input1/input2;
+						break;
+					case '%':
+						out = input1%input2;
+						break;
+					default:
+						alert('未知操作符！');
+						break;
+				}
+				result.innerHTML = out;
+			} else {
+				document.getElementById('input1').value='';
+				document.getElementById('input2').value='';
+				result.innerText = 'result';
+				return false;
+			}
+		}
+
+		//判断输入框输入是否为空
+		function checkNull (input) {
+			return (input=='')? true: false;
+		}	
+		//判断输入是否为数字，除数是否为0
+		function checkNum (input1,input2,op) {
+			if (isNaN(input1)||isNaN(input2)) {
+				alert('请输入数字');
+				return false;
+			} else if (((op == '/')&&(!input2))||((op == '%')&&!input2)) {
+				alert('除数不能为0！');
+			} else return true;
+		}
+
+		button.onclick = caculate;
+	</script>
+</body>
+</html>

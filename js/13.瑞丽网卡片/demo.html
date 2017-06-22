@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的卡片显示</title>
+<style>
+* { margin: 0; padding: 0; }
+div { overflow: hidden; height: 256px; margin: 100px; }
+ul { width: 244px; height: 244px; margin-left:-1px; margin-top: -1px;}
+.hover img { opacity: 0.5; }
+ul:after { display: block; content: ''; clear: both; }
+li { position: relative; float: left; width: 80px; height: 80px; margin-left: 1px; margin-top: 1px; list-style: none; }
+li a { display: block; width: 100%; height: 100%; border:1px solid #ccc; }
+li img { display: block; width: 78px; height: 78px; border:1px solid #fff; }
+li .name { display: none; position: absolute; left: 81px; top: 0; width: 82px; height: 82px; line-height: 82px; background-color: #e72163; text-align: center; color: #fff; }
+.right-bar .name { left:-81px;  }
+.active { z-index: 1; }
+.active .name { display: block; }
+.active a { position: relative; z-index: 1; border:1px solid #e72163; }
+.active img { border:1px solid #e72163; opacity: 1; }
+</style>
+</head>
+<body>
+	<div>
+		<ul id="ul1">
+			<li>
+				<span class="name">第1张</span>
+				<a href=""><img src="images/1.jpg" alt=""></a>
+			</li>
+			<li>
+				<span class="name">第2张</span>
+				<a href=""><img src="images/2.jpg" alt=""></a>
+			</li>
+			<li class="right-bar">
+				<span class="name">第3张</span>
+				<a href=""><img src="images/3.jpg" alt=""></a>
+			</li>
+
+			<li>
+				<span class="name">第4张</span>
+				<a href=""><img src="images/4.jpg" alt=""></a>
+			</li>
+			<li>
+				<span class="name">第5张</span>
+				<a href=""><img src="images/5.jpg" alt=""></a>
+			</li>
+			<li class="right-bar">
+				<span class="name">第6张</span>
+				<a href=""><img src="images/6.jpg" alt=""></a>
+			</li>
+
+			<li>
+				<span class="name">第7张</span>
+				<a href=""><img src="images/7.jpg" alt=""></a>
+			</li>
+			<li>
+				<span class="name">第8张</span>
+				<a href=""><img src="images/8.jpg" alt=""></a>
+			</li>
+			<li class="right-bar">
+				<span class="name">第9张</span>
+				<a href=""><img src="images/9.jpg" alt=""></a>
+			</li>
+		</ul>
+	</div>
+	<script>
+		var oUl=document.getElementById('ul1');
+		var aBtn=oUl.getElementsByTagName('a');
+		var aLi=oUl.getElementsByTagName('li');
+
+		oUl.onmouseover=function (){
+			this.classList.add('hover');
+		};
+
+		oUl.onmouseout=function (){
+			this.classList.remove('hover');
+		};
+
+/*
+	并不用因为最右一列在左边显示就另外判断。
+	直接把其类列出为一组.right-bar 然后设置其active下的.name是在左边显示就好了。
+*/
+
+		for (var i=0; i<aBtn.length; i++)
+		{
+			aBtn[i].index=i;
+			aBtn[i].onmouseover=function (){
+				aLi[this.index].classList.add('active');
+			};
+
+			aBtn[i].onmouseout=function (){
+				aLi[this.index].classList.remove('active');
+			};
+		}
+	</script>
+</body>
+</html>

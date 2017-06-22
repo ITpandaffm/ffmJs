@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的闪烁</title>
+<style>
+* { margin: 0; padding: 0; }
+div { width: 400px; height: 100px; margin: 0 auto; background-color: #ccc; }
+h2 { height: 40px; background-color: yellow; }
+</style>
+<script>
+window.onload=function (){
+	var oDiv=document.getElementById('div1');
+	var oH2=document.getElementById('tit');
+
+	// 闪烁4次   黄绿  黄绿  黄绿 黄绿 黄
+	//              0  1  2  3  4  5 6 7
+
+	document.onclick=function (){
+		var n=0;
+		var timer=setInterval(function (){
+			if (n == 7)
+			{
+				clearInterval(timer);
+			}
+
+			if (n%2 == 0)
+			{
+				oH2.style.backgroundColor='green';
+			}
+			else
+			{
+				oH2.style.backgroundColor='yellow';
+			}
+			n++;
+		}, 500);
+	};
+};
+</script>
+</head>
+<body>
+	<div id="div1">
+		<h2 id="tit">标题</h2>
+	</div>
+</body>
+</html>

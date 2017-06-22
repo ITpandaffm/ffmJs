@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>秒表</title>
+	<script>
+		window.onload = function () {
+			var startBtn = document.getElementById('start-btn');
+			var pauseBtn = document.getElementById('pause-btn');
+			var resetBtn = document.getElementById('reset-btn');
+			var input = document.getElementById('input');
+			var timer = null;
+			var n = 0;
+			startBtn.onclick = function () {
+
+				startBtn.disabled = true;
+				pauseBtn.disabled = false;
+				resetBtn.disabled = false;
+				// clearInterval(timer);
+				timer = setInterval(function () {
+					n++;
+					var m = parseInt(n / 60);
+					var s = n % 60;
+					if (m<10) { m='0'+m }
+					if (s<10) { s='0'+s }
+
+					input.value = m + ':' +s; 
+				}, 100);
+			pauseBtn.onclick = function () {
+				startBtn.disabled = false;
+				resetBtn.disabled = false;
+				this.disabled = true;
+				clearInterval(timer);
+			};	
+
+			resetBtn.onclick = function () {
+				this.disabled = true;
+				input.value = '00:00';
+				startBtn.disabled = false;
+				pauseBtn.disabled = false;
+
+				n=0;	
+			};
+
+			};
+		};
+	</script>
+</head>
+<body>
+	<input type="text" id="input" value='00:00'> 
+	<input type="button" id="start-btn" value="start">
+	<input type="button" id="pause-btn" disabled="" value="pause">
+	<input type="button" id="reset-btn" value="reset">
+</body>
+</html>

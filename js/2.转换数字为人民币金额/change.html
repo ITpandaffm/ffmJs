@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>转换</title>
+</head>
+
+<body>
+    <input type="text" id="input">
+    <input type="button" id="button" value="click">
+    <script>
+    var button = document.getElementById('button');
+
+    function click() {
+        input = document.getElementById('input').value;
+        if (input == '') {
+        	alert('请输入!');
+        	return false;
+        } else if (input == 0) {
+        	alert('人民币零元整');
+        	return false;
+        }
+        var result = "人民币";
+        var oneplace = input % 10;
+        var tensplace = parseInt(input % 100 / 10);
+        var hundredplace = parseInt(input % 1000 / 100);
+        var thousandplace = parseInt(input % 10000 / 1000);
+        var wanplace = parseInt(input % 100000 / 10000);
+        var array = [oneplace, tensplace, hundredplace, thousandplace, wanplace];
+
+        //如果下面这个for循环使用的是for( var num in array)的话，那么取出的num会变成字符串类型！
+
+        for (var i=0; i<array.length; i++) {
+
+            var number = array[i];
+
+            switch (number) {
+                case 0:
+                    number = '零';
+                    break;
+                case 1:
+                    number = '壹';
+                    break;
+                case 2:
+                    number = '贰';
+                    break;
+                case 3:
+                    number = '叁';
+                    break;
+                case 4:
+                    number = '肆';
+                    break;
+                case 5:
+                    number = '伍';
+                    break;
+                case 6:
+                    number = '陆';
+                    break;
+                case 7:
+                    number = '柒';
+                    break;
+                case 8:
+                    number = '捌';
+                    break;
+                case 9:
+                    number = '玖';
+                    break;
+                default:
+                    alert('输入不合格式！')
+                    break;
+            }
+            array[i] = number;
+
+        }
+
+    	for (var i = array.length - 1; i >= 0; i--) {
+    		if (array[i] != '零') {
+    			switch (i) {
+    				case 0:
+    					result += array[i];
+    					break;
+    				case 1:
+    					result += array[i]+'拾';
+    					break;
+    				case 2:
+    					result += array[i]+'佰';
+    					break;
+    				case 3:
+    					result += array[i] + '仟';
+    					break;
+    				case 4:
+    					result += array[i] +'万';
+    				default:
+    					// statements_def
+    					break;
+    			}
+    		}
+    	}
+
+    	result += '圆整';
+    	alert(result);
+    }
+
+    button.onclick = click;
+    </script>
+</body>
+
+</html>

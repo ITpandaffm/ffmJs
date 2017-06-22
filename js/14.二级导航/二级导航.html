@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的二级导航</title>
+<style>
+* { margin: 0; padding: 0; list-style: none; text-decoration: none; }
+.box { width: 405px; margin: 50px auto; }
+.nav { margin-left: -1px; }
+.nav:after { display: table; content: ''; clear: both; }
+.nav>li { float: left; width: 100px; margin-left: 1px; }
+.nav a { display: block; width: 100%; height: 100%; border:1px solid #000; text-align: center; color: #000; transition: .1s all ease; }
+.nav a:hover { background-color: #eee; color: #fff; }
+.nav li { height: 30px; line-height: 30px; }
+.nav ul { display: none; margin-top: -2px; }
+.nav ul li { margin-top: 1px; }
+
+.active ul { display: block; }
+</style>
+<script>
+window.onload=function (){
+	var oUl=document.getElementById('ul1');
+	var aLi=oUl.children; // ul>li
+
+	for (var i=0; i<aLi.length; i++)
+	{
+		aLi[i].onmouseover=function (){
+			var oSubUl=this.getElementsByTagName('ul')[0];
+
+			if (oSubUl)
+			{
+				oSubUl.style.display='block';
+			}
+			
+		};
+
+		aLi[i].onmouseout=function (){
+			var oSubUl=this.getElementsByTagName('ul')[0];
+
+			if (oSubUl)
+			{
+				oSubUl.style.display='none';
+			}
+		};
+	}
+};
+</script>
+</head>
+<body>
+	<div class="box">
+		<ul class="nav" id="ul1">
+			<li>
+				<a href="#">page1</a>
+			</li>
+			<li>
+				<a href="#">page2</a>
+				<ul>
+					<li><a href="#">item2</a></li>
+					<li><a href="#">item2</a></li>
+					<li><a href="#">item2</a></li>
+					<li><a href="#">item2</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">page3</a>
+				<ul>
+					<li><a href="#">item3</a></li>
+					<li><a href="#">item3</a></li>
+					<li><a href="#">item3</a></li>
+					<li><a href="#">item3</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">page4</a>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

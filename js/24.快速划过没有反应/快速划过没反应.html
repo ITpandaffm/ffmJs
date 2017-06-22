@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的快速划过没反应</title>
+<style>
+input { display: block; width: 80px; margin: 20px auto; }
+div { display: none; margin: 0 auto; width: 200px; height: 200px; background-color: #ccc; }
+</style>
+<script>
+/*
+	当onmouseover时，并不是每次移动到就马上显示的效果是最好的。
+	有时候用户可能只是在滑动的时候不小心“经过”
+	这时候如果也快速显示，（然后用户经过完毕，又快速消失）
+	感觉就是“闪”了一下，这样十分影响用户体验。
+	所以应该添加一个简短的延时，刚好用户察觉不到，又可以过滤掉用户无心划过的情况
+*/
+window.onload=function (){
+	var oBtn=document.getElementById('btn');
+	var oDiv=document.getElementById('div1');
+	var timer=null;
+
+	oBtn.onmouseover=function (){
+		timer=setTimeout(function (){
+			oDiv.style.display='block';
+		}, 100);
+	};
+
+	oBtn.onmouseout=function (){
+		clearTimeout(timer);
+		oDiv.style.display='none';
+	};
+};
+</script>
+</head>
+<body>
+	<input type="button" value="显示、隐藏" id="btn">
+	<div id="div1"></div>
+</body>
+</html>

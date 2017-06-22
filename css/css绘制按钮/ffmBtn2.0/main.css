@@ -1,0 +1,178 @@
+.light {
+    width: 98px;
+    height: 51px;
+    background: #0f0;
+    border-radius: 25px;
+    transition: .5s all ease;
+}
+.light:hover {
+    background: #ccc;
+}
+.light:hover .light-circle {
+    transform: translateX(-1px);
+    border-color: #ccc;
+}
+
+.light-circle {
+    transform: translateX(47px);
+    width: 47px;
+    height: 47px;
+    background: #fff;
+    border-radius: 24px;
+    border: 2px solid #0f0;
+    transition: .5s all ease;
+}
+
+.light-ios {
+    width: 98px;
+    height: 51px;
+    background: #07cc07;
+    border-radius: 25px;
+    transition: .5s all ease;
+    border: 1px solid transparent;
+}
+.light-ios-circle {
+    transform: translateX(47px);
+    width: 47px;
+    height: 48px;
+    background: #fff;
+    border-radius: 24px;
+    border: 2px solid #07cc07;
+    transition: .5s all ease;
+}
+.light-ios:hover {
+    background: #fffafa;
+    border-color: #ccc;
+}
+.light-ios:hover .light-ios-circle {
+    transform: translateX(-1px);
+    border-color: #ccc;
+}
+
+.skewed {
+    position: relative;
+    width: 100px;
+    height: 50px;
+    background: #07cc07;
+    text-align: center;
+    line-height: 50px;
+    transform: skew(-13deg,0deg);
+}
+
+.skewed:hover {
+    animation: .5s skewedBtnAni forwards ease 1;
+}
+.skewed:hover >span {
+    animation: .5s skewedBtnSpanAni forwards ease 1;
+}
+.skewed:hover .skewed-off {
+    animation: .5s .5s skewedOffAni forwards ease 1;
+}
+@keyframes skewedBtnAni {
+    0% {}
+    100% {background: #ccc;}
+}
+@keyframes skewedBtnSpanAni {
+    0% {}
+    100% {opacity: 0;background: #ccc}
+}
+@keyframes skewedOffAni {
+    0% {}
+    100% {opacity: 1}
+}
+.skewed span {
+    font-size: 24px;
+    color: #fff;
+    background: #07cc07;
+}
+
+.skewed-off {
+    position:  absolute;   
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100px;
+    height: 50px;
+    background: #ccc;
+    text-align: center;
+    line-height: 50px;
+    transform: skew(-13deg,0deg);
+    opacity: 0;
+}
+.skewed-off span {
+    font-size: 24px;
+    color: #fff;
+    background: #ccc;
+}
+
+.flat {
+    width: 94px;
+    height: 48px;
+    background: #fff;
+    border-radius: 28px;
+    border: 5px solid #07cc07;
+    transition: .5s all ease;
+}
+.flat:hover {
+    border-color: #ccc;
+}
+.flat:hover .flat-circle {
+    transform: translateX(-1px);
+    background: #ccc;
+}
+.flat-circle {
+    transform: translateX(40px);
+    width: 47px;
+    height: 42px;
+    background: #07cc07;
+    border-radius: 24px;
+    border: 3px solid #fff;
+    transition: .5s all ease;
+}
+.flip-btn {
+    position: relative;
+    width: 100px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.flip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 50px;
+    background: #07cc07;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 10px;
+    transition: .5s all ease;
+}
+.flip span {
+    font-size: 24px;
+    color: #fff;
+    background: #07cc07;
+}
+.flip-off {
+    position: absolute;
+    left: 100px;
+    top: 0;
+    width: 100px;
+    height: 50px;
+    background: #ff2020;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 10px;
+    transition: .5s all ease;
+}
+.flip-off span {
+    font-size: 24px;
+    color: #fff;
+    background: #ff2020;
+}
+.flip-btn:hover .flip {
+    left: -100px;
+}
+.flip-btn:hover .flip-off {
+    left: 0;
+}

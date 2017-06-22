@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript简易日历</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script>
+    window.onload = function() {
+        var oCalendar = document.getElementById('tab');
+        var oItem = oCalendar.getElementsByTagName('li');
+        for (var i = oItem.length - 1; i >= 0; i--) {
+            oItem[i].onmouseover = function() {
+                for (var i = oItem.length - 1; i >= 0; i--) {
+                    oItem[i].className = '';
+                }
+                this.className = 'active';
+            };
+        }
+    };
+    </script>
+</head>
+
+<body>
+    <div id="tab" class="calendar">
+        <ul>
+            <li class="active">
+                <h2>1</h2>
+                <p>JAN</p>
+            </li>
+            <li>
+                <h2>2</h2>
+                <p>FER</p>
+            </li>
+            <li>
+                <h2>3</h2>
+                <p>MAR</p>
+            </li>
+            <li>
+                <h2>4</h2>
+                <p>APR</p>
+            </li>
+            <li>
+                <h2>5</h2>
+                <p>MAY</p>
+            </li>
+            <li>
+                <h2>6</h2>
+                <p>JUN</p>
+            </li>
+            <li>
+                <h2>7</h2>
+                <p>JUL</p>
+            </li>
+            <li>
+                <h2>8</h2>
+                <p>AUG</p>
+            </li>
+            <li>
+                <h2>9</h2>
+                <p>SEP</p>
+            </li>
+            <li>
+                <h2>10</h2>
+                <p>OCT</p>
+            </li>
+            <li>
+                <h2>11</h2>
+                <p>NOV</p>
+            </li>
+            <li>
+                <h2>12</h2>
+                <p>DEC</p>
+            </li>
+        </ul>
+        <div class="text">
+            <h2 id="tit">1月活动</h2>
+            <p id="p1">快过年了，大家可以商量着去哪玩吧～</p>
+        </div>
+    </div>
+</body>
+
+</html>

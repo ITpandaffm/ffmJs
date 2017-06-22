@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的秒表</title>
+<style></style>
+<script>
+window.onload=function (){
+	var oBtn1=document.getElementById('btn1');
+	var oT=document.getElementById('t1');
+	var n=0; // 总秒数
+
+	oBtn1.onclick=function (){
+		setInterval(function (){
+			n++;
+			var m=parseInt(n/60);
+			var s=n%60;
+			oT.value=toDub(m)+':'+toDub(s);
+		}, 100); // 1000
+	};
+
+	function toDub(n)
+	{
+		return n<10 ? '0'+n : ''+n;
+	}
+};
+</script>
+</head>
+<body>
+	<input type="text" value="00:00" id="t1">
+	<input type="button" value="开始" id="btn1">
+</body>
+</html>

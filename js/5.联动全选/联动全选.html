@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的联动全选</title>
+<script>
+window.onload=function (){
+	var oBtn=document.getElementById('btn1');
+	var aInp=document.getElementsByClassName('inp');
+
+	oBtn.onclick=function (){
+		if (oBtn.checked)
+		{
+			for (var i=0; i<aInp.length; i++)
+			{
+				aInp[i].checked=true;
+			}
+		}
+		else
+		{
+			for (var i=0; i<aInp.length; i++)
+			{
+				aInp[i].checked=false;
+			}
+		}
+	};
+
+	for (var i=0; i<aInp.length; i++)
+	{
+		aInp[i].onclick=function (){
+			var nTotal=0;
+			for (var i=0; i<aInp.length; i++)
+			{
+				if (aInp[i].checked)
+				{
+					nTotal++;
+				}
+			}
+
+			// 总数 == 被选中个数
+			if (aInp.length == nTotal)
+			{
+				oBtn.checked=true;
+			}
+			else
+			{
+				oBtn.checked=false;
+			}
+		};
+	}
+};
+</script>
+</head>
+<body>
+	<input type="checkbox" id="btn1">
+
+	<hr>
+	<input type="checkbox" class="inp"><br>
+	<input type="checkbox" class="inp"><br>
+	<input type="checkbox" class="inp"><br>
+	<input type="checkbox" class="inp"><br>
+	<input type="checkbox" class="inp"><br>
+</body>
+</html>

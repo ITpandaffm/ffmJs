@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    //当前电脑的时间
+    window.onload = function() {
+    	var input = document.getElementById('input');
+        setInterval(function() {
+
+            var oDate = new Date();
+            var out = oDate.getFullYear() + '-' + (oDate.getMonth() + 1) + '-' + oDate.getDate() + '-' + oDate.getHours() + '-' + oDate.getMinutes() + '-' + oDate.getSeconds();
+           	input.innerHTML = out;
+        }, 1000)
+    };
+
+    // alert(oDate.getFullYear()); 
+    // alert(oDate.getMonth());
+    // alert(oDate.getDate());
+    // alert(oDate.getHours());
+    // alert(oDate.getMinutes());
+    // alert(oDate.getSeconds());
+    </script>
+</head>
+
+<body>
+	<div id="input"></div>
+</body>
+
+</html>

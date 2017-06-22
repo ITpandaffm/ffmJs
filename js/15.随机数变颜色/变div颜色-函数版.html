@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的随机数变颜色</title>
+<style>
+div { width: 200px; height: 200px; border:5px solid #999; }
+</style>
+<script>
+window.onload=function (){
+	var oBtn=document.getElementById('btn');
+	var oDiv=document.getElementById('div1');
+
+	oBtn.onclick=function (){
+		var r=rnd(0, 256);
+		var g=rnd(0, 256);
+		var b=rnd(0, 256);
+
+		oDiv.style.background='rgb('+r+', '+g+', '+b+')';
+	};
+
+	function rnd(n, m)
+	{
+		// 函数返回值
+		return parseInt(Math.random()*(m-n))+n;
+	}
+};
+</script>
+</head>
+<body>
+	<input type="button" value="变颜色" id="btn">
+	<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的倒计时发短信</title>
+<style></style>
+<script>
+window.onload=function (){
+	var oBtn=document.getElementById('btn');
+	oBtn.onclick=function (){
+		oBtn.disabled=true;
+		var s=5;
+		oBtn.value=s+'秒后重新发送';
+		var timer=setInterval(function (){
+			s--;
+			oBtn.value=s+'秒后重新发送';
+			
+			if (s == 0)// ?
+			{
+				clearInterval(timer);
+				oBtn.disabled=false;
+				oBtn.value='发送短信';
+			}
+		}, 1000);
+	};
+};
+</script>
+</head>
+<body>
+	<input type="button" value="发送短信" id="btn">
+</body>
+</html>

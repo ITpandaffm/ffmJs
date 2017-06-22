@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的选项卡</title>
+<style>
+input { width: 100px; height: 30px; }
+input.active { background-color: yellow; }
+div { display:none; width: 310px; height: 150px; background-color: #ccc; line-height: 150px; text-align: center; font-size: 50px; }
+div.active { display: block; }
+</style>
+<script>
+window.onload=function (){
+	var aBtn=document.getElementsByTagName('input');
+	var aDiv=document.getElementsByTagName('div');
+	for (var i=0; i<aBtn.length; i++)
+	{
+		// 加下标
+		aBtn[i].index=i;
+
+		// 加事件
+		aBtn[i].onclick=function (){
+			for (var i=0; i<aBtn.length; i++)
+			{
+				aBtn[i].className='';
+				aDiv[i].className='';
+			}
+
+			this.className='active';
+			var index=this.index;
+			aDiv[index].className='active';
+		};
+	}
+};
+</script>
+</head>
+<body>
+	<input type="button" value="新闻" class="active">
+	<input type="button" value="娱乐">
+	<input type="button" value="体育">
+
+	<div class="active">0</div>
+	<div>1</div>
+	<div>2</div>
+</body>
+</html>

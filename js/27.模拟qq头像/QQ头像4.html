@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的qq头像</title>
+<style>
+* { margin: 0; padding: 0; }
+div { position: absolute; top: 50px; }
+.div1 { left: 100px; width: 100px; height: 100px; background-color: green; }
+.div2 { display: none; left: 240px; width: 400px; height: 400px; background-color: #ccc; }
+</style>
+<script>
+/*
+	当用户鼠标滑到头像，显示内容框，利用延迟，用户可以平滑往返内容框与头像
+	原理就是当用户鼠标移出头像或者内容框时，就设置一个定时器进行，
+	在一定时间内到达这两个框其中之一，就把计时器除掉
+*/ 
+window.onload=function (){
+	var oDiv1=document.getElementById('div1');
+	var oDiv2=document.getElementById('div2');
+	var timer=null;
+
+	oDiv1.onmouseover=oDiv2.onmouseover=function (){
+		clearTimeout(timer);
+		oDiv2.style.display='block';
+	};
+	
+	oDiv1.onmouseout=oDiv2.onmouseout=function (){
+		timer=setTimeout(function () {
+			oDiv2.style.display='none';
+		}, 200);
+	};
+};
+</script>
+</head>
+<body>
+	<div class="div1" id="div1"></div>
+	<div class="div2" id="div2"></div>
+</body>
+</html>

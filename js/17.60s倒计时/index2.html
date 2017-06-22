@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>计时器</title>
+    <script>
+    window.onload = function() {
+        var oBtn = document.getElementById('j-btn');
+        var oInput = document.getElementById('j-input');
+
+
+        oBtn.onclick = function() {
+
+            setInterval(function() {
+            	var curValue = (parseInt(oInput.value));
+            	oInput.value = --curValue;
+            }, 1000);
+        };
+    };
+    </script>
+</head>
+
+<body>
+    <input type="text" value="60" id="j-input">
+    <input type="button" id="j-btn" value="开始">
+</body>
+
+</html>

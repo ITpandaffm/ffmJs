@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>获取应用在元素上的css样式</title>
+<style>
+div { width: 200px; height: 200px; background-color: #ccc; }
+</style>
+<script>
+window.onload=function (){
+	var oDiv=document.getElementsByTagName('div')[0];
+
+	oDiv.onclick=function (){
+
+		//都是获取最终应用到元素上的css样式，getComputedStyle()设置能获取伪类的css，而currentStyle()是ie自娱自乐的一个属性
+		alert(getComputedStyle(oDiv, false).width);
+		// console.log(oDiv.currentStyle.width);
+	};
+};
+</script>
+</head>
+<body>
+	<div></div>
+</body>
+</html>

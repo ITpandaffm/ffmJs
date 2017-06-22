@@ -1,0 +1,32 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html,
+body {
+	width: 100%;
+	height: 100%;
+}
+body {
+	position: relative;
+}
+.container {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 600px;
+	height: 600px;
+	margin-left: -300px;
+	margin-top: -300px;
+	background: #ccc;
+}
+.wrapper {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 400px;
+	height: 400px;
+	margin-left: -200px;
+	margin-top: -200px;
+	background: #aaa;
+}

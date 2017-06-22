@@ -1,0 +1,158 @@
+.light {
+    width: 98px;
+    height: 51px;
+    background: #0f0;
+    border-radius: 25px;
+}
+.light-circle {
+    transform: translateX(47px);
+    width: 47px;
+    height: 47px;
+    background: #fff;
+    border-radius: 24px;
+    border: 2px solid #0f0;
+}
+
+.light-off {
+    width: 98px;
+    height: 51px;
+    background: #ccc;
+    border-radius: 25px;
+}
+.light-off-circle {
+    /*transform: translateX(47px);*/
+    width: 47px;
+    height: 47px;
+    background: #fff;
+    border-radius: 24px;
+    border: 2px solid #ccc;
+}
+
+.light-ios {
+    width: 98px;
+    height: 51px;
+    background: #07cc07;
+    border-radius: 25px;
+
+}
+.light-ios-circle {
+    transform: translateX(47px);
+    width: 47px;
+    height: 47px;
+    background: #fff;
+    border-radius: 24px;
+    border: 2px solid #07cc07;
+        /*box-shadow: 2px 2px 2px #07cc07;*/
+}
+
+
+.light-ios-off {
+    width: 98px;
+    height: 51px;
+    background: #fffafa;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+
+}
+.light-ios-circle-off {
+
+    width: 47px;
+    height: 47px;
+    background: #fff;
+    border-radius: 24px;
+    border: 2px solid #ccc;
+        /*box-shadow: 2px 2px 2px #07cc07;*/
+}
+
+
+.skewed {
+    width: 100px;
+    height: 50px;
+    background: #07cc07;
+    text-align: center;
+    line-height: 50px;
+    transform: skew(-13deg,0deg);
+}
+.skewed span {
+    font-size: 24px;
+    color: #fff;
+    background: #07cc07;
+}
+
+.skewed-off {
+    width: 100px;
+    height: 50px;
+    background: #ccc;
+    text-align: center;
+    line-height: 50px;
+    transform: skew(-13deg,0deg);
+}
+.skewed-off span {
+    font-size: 24px;
+    color: #fff;
+    background: #ccc;
+}
+
+
+.flat {
+    width: 94px;
+    height: 48px;
+    background: #fff;
+    border-radius: 28px;
+    border: 5px solid #07cc07;
+}
+.flat-circle {
+    transform: translateX(40px);
+    width: 47px;
+    height: 42px;
+    background: #07cc07;
+    border-radius: 24px;
+    border: 3px solid #fff;
+}
+.flat-off {
+    width: 94px;
+    height: 48px;
+    background: #fff;
+    border-radius: 28px;
+    border: 5px solid #ccc;
+}
+.flat-circle-off {
+    /*transform: translateX(42px);*/
+    width: 48px;
+    height: 42px;
+    background: #ccc;
+    border-radius: 24px;
+    border: 3px solid #fff;
+}
+
+.flip {
+    width: 100px;
+    height: 50px;
+    background: #07cc07;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 10px;
+
+
+}
+.flip span {
+    font-size: 24px;
+    color: #fff;
+    background: #07cc07;
+}
+
+.flip-off {
+    width: 100px;
+    height: 50px;
+    background: #ff2020;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 10px;
+
+}
+.flip-off span {
+    font-size: 24px;
+    color: #fff;
+    background: #ff2020;
+
+}

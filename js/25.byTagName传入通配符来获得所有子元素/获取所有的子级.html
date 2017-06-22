@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的获得所有子级</title>
+<script>
+window.onload=function (){
+	var oDiv=document.getElementById('div1');
+	var aChild=oDiv.getElementsByTagName('*');
+
+	alert(aChild.length);
+};
+</script>
+</head>
+<body>
+	<div id="div1">
+		<p>
+			<span></span>
+		</p>
+	
+		<section>
+			<p></p>
+		</section>
+	</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>不能用this</title>
+	<script>
+	/*
+		不能用this的情况：
+	1. 定时器中不能用this -> window
+    2. 套一层
+	*/
+		window.onload = function () {
+			var btn = document.getElementById('btn');
+			btn.onclick = function () {
+				alert(this);
+				setTimeout(function () {
+					alert(this);
+				}, 1000);
+				(function () {
+					alert('hello'+this);
+					})();
+			};
+		};
+	</script>
+</head>
+<body>
+	<input type="button" id="btn" value="click">
+</body>
+</html>
