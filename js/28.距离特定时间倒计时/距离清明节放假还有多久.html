@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的距离特定节点倒计时</title>
+<style></style>
+<script>
+window.onload=function (){
+	var oSpan=document.getElementById('span1');
+	var oDateTarget=new Date(); // 2017年10月1日 0:0:0
+	oDateTarget.setMonth(10);
+	oDateTarget.setDate(0);
+	oDateTarget.setHours(0);
+	oDateTarget.setMinutes(0);
+	oDateTarget.setSeconds(0);
+
+	tick();
+	setInterval(tick, 1000);
+
+	function tick()
+	{
+		var oDateNow=new Date();
+
+		var total=parseInt((oDateTarget.getTime()-oDateNow.getTime()) / 1000);
+		var d=parseInt(total/86400);
+		total%=86400;
+		var h=parseInt(total/3600);
+		total%=3600;
+		var m=parseInt(total/60);
+		total%=60;
+		var s=total;
+
+		oSpan.innerHTML=d+'天'+h+'小时'+m+'分钟'+s+'秒';
+	}
+
+};
+</script>
+</head>
+<body>
+	<h1>距离国庆节放假还有 <span id="span1"></span></h1>
+</body>
+</html>

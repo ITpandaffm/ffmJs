@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的自动播放选项卡类似广告移出移除计时器</title>
+<style>
+* { margin: 0; padding: 0; }
+.div1 { position: relative; width: 350px; margin: 50px auto; text-align: center; }
+.div1 a { position: absolute; top: 0; }
+.next { right: 0;  }
+.prev { left: 0; }
+.div1 input { width: 100px; height: 30px; }
+input.active { background-color: yellow; }
+.div1 div { display: none; height: 100px; background-color: #ccc; font-size: 50px; font-weight: bold; text-align: center; }
+.div1 div.active { display: block; }
+</style>
+<script>
+window.onload=function (){
+	var oDiv=document.getElementById('div1');
+	var aBtn=oDiv.getElementsByTagName('input');
+	var aDiv=oDiv.getElementsByTagName('div');
+	var iNow=0; // 当前第几个被选中
+
+	// 选项卡
+	for (var i=0; i<aDiv.length; i++)
+	{
+		(function (index){
+			aBtn[i].onclick=function (){
+				iNow=index;
+				
+				tab();
+			};
+		})(i);
+	}
+
+	// 上一张
+	var oPrev=document.getElementById('prev');
+	oPrev.onclick=function (){
+		iNow--;
+		if (iNow < 0)
+		{
+			iNow=aBtn.length-1;
+		}
+		tab();
+	};
+
+	// 下一张
+	var oNext=document.getElementById('next');
+	oNext.onclick=next;
+
+	var timer=setInterval(next, 1000);
+
+	oDiv.onmouseover=function (){
+		clearInterval(timer);
+	};
+
+	oDiv.onmouseout=function (){
+		timer=setInterval(next, 1000);
+	};
+
+	function next()
+	{
+		iNow++;
+		if (iNow == aBtn.length)
+		{
+			iNow=0;
+		}
+		tab();
+	}
+
+	function tab()
+	{
+		for (var i=0; i<aBtn.length; i++)
+		{
+			aBtn[i].classList.remove('active');
+			aDiv[i].classList.remove('active');
+		}
+		aBtn[iNow].classList.add('active');
+		aDiv[iNow].classList.add('active');
+	}
+};
+</script>
+</head>
+<body>
+	<div class="div1" id="div1">
+		<a href="javascript:;" class="next" id="next">-></a>
+		<a href="javascript:;" class="prev" id="prev"><-</a>
+		<input type="button" value="0" class="active">
+		<input type="button" value="1">
+		<input type="button" value="2">
+		<div class="active">0</div>
+		<div>1</div>
+		<div>2</div>
+	</div>
+</body>
+</html>
