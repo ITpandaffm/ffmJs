@@ -12,4 +12,49 @@
 *还有一些实用的js/jq做的特效或插件，对于小白或者菜鸟前端小伙伴们可以star收藏*
 
 
+部分demo演示：
+
+<img src="CSS3DBall.gif" width="300" height="300">
+
+**CSS3DBall**，利用css3D实现的一个看起来屌屌的旋转效果
+
+---
+
+<img src="CSSElephant.gif" width="600" height="300">
+
+**CSSElephant**，纯用css画的一个大象
+
+---
+
+
+<img src="JSGame.gif" width="600" height="300">
+
+**JSGame**，js实现的小游戏
+
+---
+
+<img src="PhotoWall.gif" width="600" height="300">
+
+**照片墙支持拖拽换位**
+
+---
+
+<img src="NavAni.gif" width="800" height="200">
+
+**导航条动画特效**
+
+--- 
+
+<img src="BannerDemo.gif" width="600" height="300">
+
+**选项卡带进度条特效**
+
+---
+
+<img src="BlockAni.gif" width="600" height="300">
+
+**分块运动图片切换特效**，已写成插件，支持各个方向各个角度
+
+---
+
 ###欢迎star~
