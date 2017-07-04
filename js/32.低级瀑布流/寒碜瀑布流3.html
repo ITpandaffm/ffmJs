@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的小瀑布流</title>
+<style>
+* { margin: 0; padding: 0; }
+.box { overflow: hidden; width: 966px; margin: 0 auto; }
+.box ul { float: left; width: 300px; margin: 10px; border:1px solid red; }
+.box li { list-style: none; background-color: #ccc; margin: 10px 0; font-size:50px; text-align: center; }
+</style>
+<script>
+window.onload=function (){
+	var aUl=document.getElementsByTagName('ul');
+	var arr=[];
+	for (var i=0; i<aUl.length; i++)
+	{
+		arr.push(aUl[i]);
+	}
+
+	for (var i=0; i<20; i++)
+	{
+		var oLi=document.createElement('li');
+		oLi.style.height=rnd(100, 300)+'px';
+		oLi.innerHTML=i;
+
+		// [ul1, ul2, ul3] 
+		arr.sort(function (ul1, ul2){ //排序找到行高最矮的列
+			return ul1.offsetHeight-ul2.offsetHeight;
+		});
+
+		arr[0].appendChild(oLi);
+	}
+
+	function rnd(n, m)
+	{
+		return Math.floor(Math.random()*(m-n)+n);
+	}
+};
+</script>
+</head>
+<body>
+	<div class="box">
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的index方法</title>
+<style>
+li { background-color: #ccc; margin: 10px; }
+</style>
+</head>
+<body>
+	<ul>
+		<li>
+			<input type="button" value="0">
+		</li>
+		<li>
+			<span>sss</span>
+			<span>s2234234324ss</span>
+			<input type="button" value="1">
+		</li>
+		<li>
+			<input type="button" value="2">
+		</li>
+	</ul>
+
+	<script src="jquery_1.12.4.js"></script>
+	<script>
+		$('li input').click(function (){
+			// .index() 默认获取同级元素（不分种类）的第几个
+			alert($(this).index());
+		});
+	</script>
+</body>
+</html>

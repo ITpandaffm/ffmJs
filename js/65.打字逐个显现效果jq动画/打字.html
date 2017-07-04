@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的打字效果</title>
+<style>
+span { font-size: 50px; font-weight: bold; opacity: 0; }
+</style>
+</head>
+<body>
+	
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		var str='李晓东在诉讼中表示，请求法院依法确认被告提供并据以计算利息的《中国建设银行龙卡信用卡领用协议》第三条第九款系无效的格式条款，并请求法院依法判令三被告向原告返还317月计收复利。”';
+
+		for (var i=0; i<str.length; i++)
+		{
+			var oSpan=$('<span>'+str.charAt(i)+'</span>');
+			oSpan.appendTo('body');
+		}
+
+		var n=0;
+		var aSpan=$('span');
+		var timer=setInterval(function (){
+			aSpan.eq(n).animate({opacity:1});
+			n++;
+
+			if (n == aSpan.length)
+			{
+				clearInteval(timer);
+			}
+		}, 100);
+
+	</script>
+</body>
+</html>

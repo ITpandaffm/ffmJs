@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>jq的禁止右键</title>
+<style>
+div { background: #ccc; }
+</style>
+</head>
+<body>
+	<div><input type="button" value="aaa"></div>
+	<script src="jquery_1.12.4.js"></script>
+	<script>
+		$(document).contextmenu(function (ev){
+			alert("右键被禁止了");
+			ev.preventDefault();
+		});
+	</script>
+</body>
+</html>

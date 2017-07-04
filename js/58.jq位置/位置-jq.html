@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的jq位置</title>
+<style>
+* { margin: 0; padding: 0; }
+#div1 { position: relative; width: 400px; height: 400px; background-color: #ccc; border:5px solid red; }
+#div2 { width: 200px; height: 200px; margin-left: 30px; background-color: green; }
+#div3 { position: absolute; top: 0; left: 20px; width: 100px; height: 100px; background-color: yellow; }
+</style>
+</head>
+<body>
+	<div id="div1">
+		<div id="div2">
+			<div id="div3"></div>
+		</div>
+	</div>
+	<script src="jquery_1.12.4.js"></script>
+	<script>
+		var left=$('#div3').position().left;
+
+		alert(left);
+	</script>
+</body>
+</html>

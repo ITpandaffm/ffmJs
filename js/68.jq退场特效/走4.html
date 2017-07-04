@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的jq退场特效</title>
+<style>
+* { margin: 0; padding: 0; }
+ul { width: 510px; height: 510px; margin: 50px auto; border:1px solid #000; }
+li { float:left; width: 150px; height: 150px; margin: 10px; background-color: #ccc; list-style: none; font-size:30px; }
+input { position: absolute; top: 50px; left: 50px; width: 100px; height: 30px; }
+</style>
+</head>
+<body>
+	<input type="button" value="go">
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<script src="jquery-1.12.4.js"></script>
+	<script src="jquery.easing.1.3.js"></script>
+	<script>
+		var aLi=$('li');
+		// 布局转换
+		var aPos=[];
+		aLi.each(function (){
+			var left=$(this).offset().left;
+			var top=$(this).offset().top;
+
+			$(this).html(`
+				left:${left}
+				top:${top}
+			`);
+
+			$(this).css({
+				left:left+'px',
+				top:top+'px'
+			});
+
+			aPos.push({left:left, top:top});
+		});
+
+		/*
+			[
+				{left:xxx, top:xxx}
+				{left:xxx, top:xxx}
+				{left:xxx, top:xxx}
+				{left:xxx, top:xxx}
+				{left:xxx, top:xxx}
+			]
+		*/
+
+		aLi.css({
+			position:'absolute',
+			margin:0
+		});
+
+		// 运动
+		$('input').click(function (){
+			var n=0;
+			var timer=setInterval(function (){
+				(function (index){
+					aLi.eq(n).animate({
+						width:0,
+						height:0,
+						top:0,
+						left:0,
+						opacity:0
+					}, {
+						easing:'easeInOutElastic',
+						complete:function (){
+							if (index == aLi.length-1)
+							{
+								// 最后一个运动完
+								end();
+							}
+						}
+					});
+				})(n);
+
+				n++;
+
+				if (n == aLi.length)
+				{
+					clearInterval(timer);
+				}
+			}, 120);
+		});
+
+		function end()
+		{
+			aLi.css('background', 'red');
+			var n=aLi.length-1;
+			var timer=setInterval(function (){
+				aLi.eq(n).animate({
+					width:'150px',
+					height:'150px',
+					opacity:1,
+					left:aPos[n].left+'px',
+					top:aPos[n].top+'px'
+				}, {
+					easing:'easeInOutElastic'
+				});
+
+				n--;
+				if (n < 0)
+				{
+					clearInterval(timer);
+				}
+			}, 100);
+		}
+	</script>
+</body>
+</html>

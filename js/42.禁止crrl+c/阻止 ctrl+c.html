@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的禁止ctrl+c</title>
+<style></style>
+<script>
+	document.onkeydown=function (ev){
+		var oEvent=ev || event;
+
+		if (oEvent.ctrlKey && oEvent.keyCode==67)
+		{
+			alert("禁止你的复制！");
+			return false;
+		}
+	};
+</script>
+</head>
+<body>
+	<p>央视网消息(新闻联播)： 中共中央总书记、国家主席、中央军委主席习近平29日上午在参加首都义务植树活动时强调，植树造林，种下的既是绿色树苗，也是祖国的美好未来。要组织全社会特别是广大青少年通过参加植树活动，亲近自然、了解自然、保护自然，培养热爱自然、珍爱生命的生态意识，学习体验绿色发展理念，造林绿化是功在当代、利在千秋的事业，要一年接着一年干，一代接着一代干，撸起袖子加油干。</p>
+</body>
+</html>

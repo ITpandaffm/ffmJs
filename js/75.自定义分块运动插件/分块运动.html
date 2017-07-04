@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分块运动</title>
+<style>
+* { margin: 0; padding: 0; }
+div { position: relative; width: 700px; height: 400px; margin: 50px auto; }
+span { opacity: 0; position: absolute; background-image: url(images/1.jpg); background-repeat: no-repeat; }
+</style>
+</head>
+<body>
+    <div>
+        <img src="images/0.jpg" width="700" height="400">
+    </div>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+    var aPigPath = [
+    	'images/0.jpg',
+    	'images/1.jpg',
+    	'images/2.jpg'
+    ];
+    var nCurPic = 0;
+    var nW = 700;
+    var nH = 400;
+    var nCols = 10;
+    var nRows = 4;
+    var nItemW = nW / nCols;
+    var nItemH = nH / nRows;
+    var bIsAnimating = false;
+    for (var i = 0; i < nRows; i++) {
+        for (var j = 0; j < nCols; j++) {
+            var oSpan = $('<span></span>');
+            oSpan.css({
+                width: nItemW + 'px',
+                height: nItemH + 'px',
+                left: j * nItemW + 'px',
+                top: i * nItemH + 'px',
+                'background-position': '-' + (j * nItemW) + 'px -' + (i * nItemH) + 'px'
+            });
+            oSpan.appendTo('div');
+        }
+    }
+    $(document).click(function(event) {
+    	if (bIsAnimating) {
+    		return; 		//如果正在进行动画，则点击无效（不能使用stop()，不然显示卡主
+    	}
+    	bIsAnimating = true;
+    	nCurPic++;
+        var aSpan = $('span');
+        var n = 0;
+        var timer = setInterval(function() {
+            (function(index) {
+                aSpan.eq(n).animate({
+                    opacity: 1
+                }, {
+                	duration:500,
+                    complete: function() {
+                        if (index == aSpan.length - 1) {
+                        	$('img').attr('src', aPigPath[nCurPic%aPigPath.length]);
+                        	aSpan.css({
+                        		'background-image': 'url('+aPigPath[(nCurPic+1)%aPigPath.length]+')',
+                        		opacity: 0
+                        	});
+                        	bIsAnimating = false;
+                        }
+                    }
+                });
+            })(n);
+            n++;
+            if (n == aSpan.length) {
+                clearInterval(timer);
+            }
+        }, 100);
+    });
+
+    // $(document).click(function(event) {
+    // 	$('span').each(function(index) {
+    // 		var n=0;
+    // 		(function (index) {
+    // 			alert(this);		//注意在封闭自空间，this是window啊 不能用这种方法！！！
+    // 		// 	var timer = setInterval(function () {
+    // 		// 	$(this).animate({
+    // 		// 		'opacity':1
+    // 		// 	}, {
+    // 		// 		duration:500,
+    // 		// 		complete:function () {
+    // 		// 			if (index==$('span').length-1) {
+    // 		// 				alert('a');
+    // 		// 			}
+    // 		// 		}
+    // 		// 	});
+    // 		// }, 300);					
+    // 		})(n);
+    // 		n++;
+    // 		if (n==$('span').length) {
+    // 			clearInterval(timer);
+    // 		}
+    // 	});
+    // });
+    </script>
+</body>
+
+
+</html>

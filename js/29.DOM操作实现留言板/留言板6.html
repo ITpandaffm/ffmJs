@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的留言板</title>
+<style></style>
+<script>
+window.onload=function (){
+	var oT=document.getElementById('t1');
+	var oBtn=document.getElementById('btn');
+	var oUl=document.getElementById('ul1');
+
+	oBtn.onclick=function (){
+		var str=oT.value;
+		var oLi=document.createElement('li');
+		oLi.innerHTML=str+' <a href="javascript:;">删除</a>';
+		if (oUl.children[0])
+		{
+			oUl.insertBefore(oLi, oUl.children[0]);
+		}
+		else
+		{
+			oUl.appendChild(oLi);
+		}
+
+		// aBtn
+		var aBtn=document.getElementsByTagName('a');
+		for (var i=0; i<aBtn.length; i++)
+		{
+			aBtn[i].onclick=function (){
+				// 父级.removeChild(子级)
+				// oUl.remiveChild(this)
+				var oLi=this.parentNode;
+				oUl.removeChild(oLi);
+			};
+		}
+	};
+};
+</script>
+</head>
+<body>
+	<input type="text" id="t1">
+	<input type="button" value="留言" id="btn">
+	<ul id="ul1">
+		<!-- <li>aaa <a>删除</a></li> -->
+	</ul>
+</body>
+</html>

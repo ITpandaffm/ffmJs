@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>只能输入数字</title>
+	<script>
+	window.onload = function () {
+		var input = document.getElementById('input');
+		document.onkeydown = function (ev){
+			var oEvent = ev || event;
+			if (oEvent.keyCode >= 48 && oEvent.keyCode <= 57 || oEvent.keyCode ==8 || oEvent.keyCode >= 37 && oEvent.keyCode <=40 ||oEvent.keyCode==32) {
+
+			} else if (oEvent.keyCode==13) {
+				document.getElementById('form').onsubmit();
+			} 
+
+			else {
+				alert('只能输入数字！');
+				return false;
+			}
+		};	
+	};
+	</script>
+</head>
+<body>
+	<h1>只能输入数字</h1>
+	<form action="http://www.baidu.com" id="form" method="get">
+		<input type="text" id="input" name="hello">
+	</form>
+	
+</body>
+</html>

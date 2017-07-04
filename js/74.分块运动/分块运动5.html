@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的分块运动</title>
+<style>
+* { margin: 0; padding: 0; }
+div { position: relative; width: 700px; height: 400px; margin: 50px auto; }
+span { opacity: 0; position: absolute; width: 70px; height: 100px; background-image: url(images/1.jpg); background-repeat: no-repeat; }
+</style>
+</head>
+<body>
+	<div>
+		<img src="images/0.jpg" width="700" height="400">
+	</div>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		var W=700;
+		var H=400;
+		var cols=10;
+		var rows=5;
+		var nW=W/cols;
+		var nH=H/rows;
+		var oImg=$('img');
+		var aImgPath=[
+			'images/0.jpg',
+			'images/1.jpg',
+			'images/2.jpg'
+		];
+
+		for (var r=0; r<rows; r++) // 行
+		{
+			for (var c=0; c<cols; c++)
+			{
+				var nTop=r*nH;
+				var nLeft=c*nW;
+
+				var oSpan=$('<span></span>');
+				oSpan.css({
+					left: nLeft+'px',
+					top: nTop+'px',
+					width: nW+'px',
+					height: nH+'px',
+					'background-position': -nLeft+'px -'+nTop+'px'
+				}).attr({
+					'data-c': c,
+					'data-r': r
+				});
+
+				oSpan.appendTo('div');
+			}
+		}
+
+		$(document).click(function (){
+			var aSpan=$('span');
+			
+			aSpan.each(function (){
+				var oSpan=$(this);
+				var r=parseInt(oSpan.attr('data-r'));
+				var c=parseInt(oSpan.attr('data-c'));
+
+				setTimeout(function (){
+					oSpan.animate({
+						opacity: 1
+					});
+				}, 100*(r+c));
+			});
+		});
+
+
+	</script>
+</body>
+</html>

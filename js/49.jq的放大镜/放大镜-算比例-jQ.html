@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的jq放大镜（完美修复版）</title>
+<style>
+* { margin: 0; padding: 0; }
+div { position: absolute; top: 50px; width: 400px; height: 400px; }
+#div1 { left: 50px; }
+#div1 span { display: none; position: absolute; top: 0; left: 0; width: 200px; height: 200px; background-color: yellow; opacity: .5; }
+#div2 { display: none; left: 500px; background:url(images/big.jpg) no-repeat -20px -30px; }
+</style>
+</head>
+<body>
+	<div id="div1">
+		<img src="images/small.jpg" id="img1">
+		<span id="span1"></span>
+	</div>
+	<div id="div2"></div>
+
+	<script src="jquery_1.12.4.js"></script>
+	<script>
+	//与上次原生js实现相比，该版本实现了右边放大框内容与左边放大框框内内容一致
+		var oDiv1=$('#div1');
+		var oDiv2=$('#div2');
+		var oSpan=$('#span1');
+		var oImg=$('#img1');
+		var nMaxTop=0;
+		var nMaxLeft=0;
+		var nMaxImgLeft=0;
+		var nMaxImgTop=0;
+
+		oDiv1.hover(function (){
+			oSpan.show();
+			oDiv2.show();
+			
+			nMaxTop=oDiv1[0].offsetHeight-oSpan[0].offsetHeight;
+			nMaxLeft=oDiv1[0].offsetWidth-oSpan[0].offsetWidth;
+			nMaxImgLeft=800-oDiv2.width();
+			nMaxImgTop=800-oDiv2.height();
+		}, function (){
+			oSpan.hide();
+			oDiv2.hide();
+		});
+		
+		oDiv1.mousemove(function (ev){
+			var left=ev.clientX-oDiv1[0].offsetLeft-oSpan[0].offsetWidth/2;
+			var top=ev.clientY-oDiv1[0].offsetTop-oSpan.height()/2;
+			
+			if (top < 0)
+			{
+				top=0;
+			}
+			else if (top > nMaxTop)
+			{
+				top=nMaxTop;
+			}
+			
+			if (left < 0)
+			{
+				left=0;
+			}
+			else if (left > nMaxLeft)
+			{
+				left=nMaxLeft;
+			}
+			
+			oSpan.css({
+				top:top+'px',
+				left:left+'px'
+			});
+			
+			var x=left/nMaxLeft*nMaxImgLeft;
+			var y=top/nMaxTop*nMaxImgTop;
+			
+			oDiv2.css('background-position', '-'+x+'px -'+y+'px');
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

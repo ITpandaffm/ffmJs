@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的延迟加载</title>
+<style>
+* { margin: 0; padding: 0; }
+li { list-style: none; margin:5px; float: left; width: 310px; height: 310px; border:5px solid red; }
+</style>
+<script>
+window.onload=window.onscroll=window.onresize=function (){
+	var aImg=document.getElementsByTagName('img');
+	var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+	var clientBottom=document.documentElement.clientHeight+scrollTop;
+
+	for (var i=0; i<aImg.length; i++)
+	{
+		var top=getPos(aImg[i]).top;
+
+		if (top < clientBottom)
+		{
+			// 加载
+			aImg[i].src=aImg[i].getAttribute('_src');
+		}
+	}
+
+	function getPos(obj)
+	{
+		var left=0;
+		var top=0;
+
+		while (obj)
+		{
+			left+=obj.offsetLeft;
+			top+=obj.offsetTop;
+
+			obj=obj.offsetParent;
+		}
+
+		return {left:left, top:top}
+	}
+};
+</script>
+</head>
+<body>
+	<ul>
+		<li><img _src="images/m1.jpg" alt=""></li>
+		<li><img _src="images/m2.jpg" alt=""></li>
+		<li><img _src="images/m3.jpg" alt=""></li>
+		<li><img _src="images/m4.jpg" alt=""></li>
+		<li><img _src="images/m5.jpg" alt=""></li>
+		<li><img _src="images/m6.jpg" alt=""></li>
+		<li><img _src="images/m7.jpg" alt=""></li>
+		<li><img _src="images/m8.jpg" alt=""></li>
+		<li><img _src="images/m9.jpg" alt=""></li>
+		<li><img _src="images/m10.jpg" alt=""></li>
+	</ul>
+</body>
+</html>

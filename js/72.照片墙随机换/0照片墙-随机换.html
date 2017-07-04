@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { margin:0; padding:0; }
+ul { width:510px; height:510px; margin:50px auto; border:1px solid red; }
+li { width:150px; height:150px; margin:10px; float:left; list-style:none; }
+img { display:block; width:100%; }
+/*仅仅是测试*/
+span { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255, 255, 255, 0.5); color:red; font-size:50px; text-align:center; line-height:150px; font-weight:bold; }
+</style>
+</head>
+
+<body>
+	<ul>
+		<li><img src="cat/1.jpg" /></li>
+		<li><img src="cat/2.jpg" /></li>
+		<li><img src="cat/3.jpg" /></li>
+		
+		<li><img src="cat/4.jpg" /></li>
+		<li><img src="cat/5.jpg" /></li>
+		<li><img src="cat/6.jpg" /></li>
+		
+		<li><img src="cat/7.jpg" /></li>
+		<li><img src="cat/8.jpg" /></li>
+		<li><img src="cat/9.jpg" /></li>
+	</ul>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		// 布局转换
+		var aLi=$('li');
+		var aPos=[];
+		aLi.each(function (){
+			aPos.push({
+				left: $(this).offset().left,
+				top: $(this).offset().top
+			});
+		});
+
+		/*aLi.css({
+			left: aPos[$(this).index()].left+'px',
+			top : aPos[$(this).index()].top+'px',
+			position : 'absolute',
+			margin : 0
+		});
+*/
+		aLi.each(function (index){
+			$(this).css({
+				left: aPos[index].left+'px',
+				top : aPos[index].top+'px',
+				position : 'absolute',
+				margin : 0
+			});
+		});
+
+		$(document).click(function (){
+
+			aPos.sort(function (){
+				//时而返回正数时而负数，达到随机的效果
+				return Math.random()-0.5;
+			});
+
+			aLi.each(function (index){
+				$(this).stop().animate(aPos[index]);
+			})
+
+			/*aLi.each(function (index){
+				$(this).animate({
+					left: aPos[index].left,
+					top: aPos[index].top
+				})
+			});*/
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

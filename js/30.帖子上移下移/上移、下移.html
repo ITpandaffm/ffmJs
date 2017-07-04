@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* {margin:0; padding:0; list-style:none;}
+#ul1 {width:600px; margin:10px auto;}
+#ul1 li {border:1px solid #CCC; padding:4px;}
+#ul1 span {width:500px; display:inline-block;}
+</style>
+<script>
+window.onload=function (){
+    var oUl=document.getElementById('ul1');
+    var aLi=oUl.children;
+    // 下移
+    var aNext=document.getElementsByClassName('next');
+    var aPrev=document.getElementsByClassName('prev');
+
+    for (var i=0; i<aPrev.length; i++)
+    {
+        // 上移
+        aPrev[i].onclick=function (){
+            var oLi=this.parentNode;
+            var oPrev=oLi.previousElementSibling;
+
+            if (oLi == aLi[0])
+            {
+               alert('已经是第一个了');
+               return; 
+            }
+
+            oUl.insertBefore(oLi, oPrev);
+        };
+
+        // 下移
+        aNext[i].onclick=function (){
+            var oLi=this.parentNode;
+        
+            if (oLi == oUl.children[aLi.length-1])
+            {
+                alert('已经是最后一个');
+                return;
+            }
+
+            var oNext=oLi.nextElementSibling;
+            oUl.insertBefore(oNext, oLi);
+        };
+    }
+};
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>
+    	<span>0.中央军委晋升四名上将 习近平颁命令状</span>
+        <a href="javascript:;" class="prev">上移</a>
+        <a href="javascript:;" class="next">下移</a>
+    </li>
+	<li>
+    	<span>1.李克强:建良好生态环境向全民提供</span>
+        <a href="javascript:;" class="prev">上移</a>
+        <a href="javascript:;" class="next">下移</a>
+    </li>
+	<li>
+    	<span>2.江西涉贪9400万元官员移民后获刑</span>
+        <a href="javascript:;" class="prev">上移</a>
+        <a href="javascript:;" class="next">下移</a>
+    </li>
+	<li>
+    	<span>3.31个省级纪委书记平均57.6岁 逾6成异地调任</span>
+        <a href="javascript:;" class="prev">上移</a>
+        <a href="javascript:;" class="next">下移</a>
+    </li>
+</ul>
+</body>
+</html>

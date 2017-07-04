@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的键盘控制div</title>
+<style>
+* { margin: 0; padding: 0; }
+div { position: absolute; top: 100px; left: 100px; width: 200px; height: 200px; background-color: #ccc; }
+</style>
+<script>
+window.onload=function (){
+	var oDiv=document.getElementById('div1');
+	var left=100;
+	var top=100;
+	var bRight=false, bLeft=false, bUp=false, bDown=false;
+
+	setInterval(function (){
+		if (bRight)
+		{
+			left+=5;
+		}
+
+		if (bLeft)
+		{
+			left-=5;
+		}
+
+		if (bUp)
+		{
+			top-=5;
+		}
+
+		if (bDown)
+		{
+			top+=5;
+		}
+
+		oDiv.style.left=left+'px';
+		oDiv.style.top=top+'px';
+	}, 30);
+
+	document.onkeydown=function (ev){
+		var oEvent=ev || event;
+
+		switch (oEvent.keyCode)
+		{
+			case 37:
+				bLeft=true;
+				break;
+			case 38:
+				bUp=true;
+				break;
+			case 39:
+				bRight=true;
+				break;
+			case 40:
+				bDown=true;
+				break;
+		}
+	};
+
+	document.onkeyup=function (ev){
+		var oEvent=ev || event;
+
+		switch (oEvent.keyCode)
+		{
+			case 37:
+				bLeft=false;
+				break;
+			case 38:
+				bUp=false;
+				break;
+			case 39:
+				bRight=false;
+				break;
+			case 40:
+				bDown=false;
+				break;
+		}
+	};
+};
+</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

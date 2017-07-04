@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义滚动条</title>
+	<style>
+		* { margin: 0; padding: 0; }
+		html,body{ width: 100%; height: 100%; }
+		body { position: relative; }
+		.container { width: 100%; height: 100%; }
+		.wrapper { position: absolute; left: 100px; top: 100px; height: 100px; width: 500px; height: 500px; background: #ccc; display: flex; justify-content: space-between; border: 1px solid #000;}
+		.content {position: relative; flex-basis: 480px; background: #ff630c; overflow: hidden;}
+		.main { position: absolute; top: 0; left: 0; }
+		.scroll { flex-basis: 20px; background: #f00; display: flex; flex-direction: column; }
+		.up,.down { flex-basis: 20px; background: #0f0; }
+		.scroll-area { position: relative; flex-grow: 1; background: #fff; }
+		.scroll-area .slide { position: absolute; top: 0; left: 0; height: 80px; width: 100%; background: #00f; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="wrapper">
+			<div class="content">
+				<div class="main">
+			<p>各位观众，这里是芬兰首都赫尔辛基，这座面朝大海的古老建筑就是芬兰的总统府。当地时间4月5日上午，芬兰总统尼尼斯托在这里举行隆重的仪式，热烈欢迎中国国家主席习近平对芬兰进行国事访问。这是时隔22年后，中国国家元首再次到访这个美丽的“千湖之国”，习主席的这次访问对于巩固双方“穿越历史的友谊”、积极构建和推进面向未来的新型合作伙伴关系必将产生重要的积极影响。</p>
+			<p>
+			    当地时间上午9时30分许，习近平和夫人彭丽媛乘车抵达总统府，受到尼尼斯托和夫人豪吉欧热情迎接。尼尼斯托向彭丽媛献上鲜花。两国元首夫妇共同步入总统府庭院内。</p>
+			<p>各位观众，这里是芬兰首都赫尔辛基，这座面朝大海的古老建筑就是芬兰的总统府。当地时间4月5日上午，芬兰总统尼尼斯托在这里举行隆重的仪式，热烈欢迎中国国家主席习近平对芬兰进行国事访问。这是时隔22年后，中国国家元首再次到访这个美丽的“千湖之国”，习主席的这次访问对于巩固双方“穿越历史的友谊”、积极构建和推进面向未来的新型合作伙伴关系必将产生重要的积极影响。</p>
+			<p>
+			    当地时间上午9时30分许，习近平和夫人彭丽媛乘车抵达总统府，受到尼尼斯托和夫人豪吉欧热情迎接。尼尼斯托向彭丽媛献上鲜花。两国元首夫妇共同步入总统府庭院内。</p>
+			<p>各位观众，这里是芬兰首都赫尔辛基，这座面朝大海的古老建筑就是芬兰的总统府。当地时间4月5日上午，芬兰总统尼尼斯托在这里举行隆重的仪式，热烈欢迎中国国家主席习近平对芬兰进行国事访问。这是时隔22年后，中国国家元首再次到访这个美丽的“千湖之国”，习主席的这次访问对于巩固双方“穿越历史的友谊”、积极构建和推进面向未来的新型合作伙伴关系必将产生重要的积极影响。</p>
+			<p>
+			    当地时间上午9时30分许，习近平和夫人彭丽媛乘车抵达总统府，受到尼尼斯托和夫人豪吉欧热情迎接。尼尼斯托向彭丽媛献上鲜花。两国元首夫妇共同步入总统府庭院内。</p>
+			<p>各位观众，这里是芬兰首都赫尔辛基，这座面朝大海的古老建筑就是芬兰的总统府。当地时间4月5日上午，芬兰总统尼尼斯托在这里举行隆重的仪式，热烈欢迎中国国家主席习近平对芬兰进行国事访问。这是时隔22年后，中国国家元首再次到访这个美丽的“千湖之国”，习主席的这次访问对于巩固双方“穿越历史的友谊”、积极构建和推进面向未来的新型合作伙伴关系必将产生重要的积极影响。</p>
+			<p>
+			    当地时间上午9时30分许，习近平和夫人彭丽媛乘车抵达总统府，受到尼尼斯托和夫人豪吉欧热情迎接。尼尼斯托向彭丽媛献上鲜花。两国元首夫妇共同步入总统府庭院内。</p>					
+				</div>
+			</div>
+			<div class="scroll">
+				<div class="up"></div>
+				<div class="scroll-area">
+					<div class="slide"></div>
+				</div>
+				<div class="down"></div>
+			</div>
+		</div>
+	</div>
+	<script src="jquery_1.12.4.js"></script>
+	<script>
+		var oSlide = $('.slide');
+		var slideMaxScrollDis = parseFloat($('.scroll-area').css('height'))-parseFloat(oSlide.css('height'));
+		var slideScrollDis = 20;
+		var contentScrollMaxDis = parseFloat($('.main').css('height'))-parseFloat($('.content').css('height'));
+		var contentScrollDis = slideMaxScrollDis/slideScrollDis;
+		$('.up').click(function(event) {
+			var top = parseFloat(oSlide.css('top'));
+			var contentTop =parseFloat($('.main').css('top'));
+			//当滑动条停止滚动的时候，内容区也应该停止滚动
+			if (top-slideScrollDis > 0) {
+				top -= slideScrollDis;
+				contentTop += contentScrollDis;
+			} else if (slideScrollDis-top>0 && slideScrollDis-top < slideScrollDis ) {
+				top = 0;
+				contentTop = 0;
+			}
+			oSlide.css('top',top+'px');
+			$('.main').css('top',contentTop+'px');
+		});
+		$('.down').click(function(event) {
+			var top = parseFloat(oSlide.css('top'));
+			var contentTop =parseFloat($('.main').css('top'));
+
+			if (top+slideScrollDis < slideMaxScrollDis) {
+				top += slideScrollDis;
+				contentTop -= contentScrollDis;
+			} else if (slideMaxScrollDis-top > 0 && slideMaxScrollDis-top < slideScrollDis){
+				top = slideMaxScrollDis;
+				contentTop -= contentScrollDis;
+			}
+			oSlide.css('top',top+'px');
+			$('.main').css('top',contentTop+'px');
+		});
+
+		oSlide.mousedown(function(event) {
+			var disY = event.clientY - oSlide.offset().top;
+			$(document).on('mousemove',function (event) {
+			var top = event.clientY-$('.scroll-area').offset().top-disY;
+			if (top < 0) { 
+				top = 0;
+			} else if(top > slideMaxScrollDis) {
+				top = slideMaxScrollDis;
+			}
+			oSlide[0].style.top=top+'px';
+
+			var contScrollDis = contentScrollMaxDis * (top/slideMaxScrollDis);
+			$('.main').css('top',-contScrollDis+'px');
+
+			});
+		});
+		$('p').mousedown(function(event) {
+			return false;
+		});
+		$(document).mouseup(function(){
+			$(document).off('mousemove');
+		});
+
+	</script>
+</body>
+</html>

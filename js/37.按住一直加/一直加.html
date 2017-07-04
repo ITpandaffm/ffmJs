@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>一直加</title>
+    <script>
+    window.onload = function() {
+        var oInput = document.getElementById('input');
+        var oBtn = document.getElementById('j-btn');
+        var timer = null;
+        var timer1 = null;
+        oBtn.onclick = function() {
+            var sValue = oInput.value;
+            oInput.value = ++sValue;
+        };
+        oBtn.onmousedown = function() {
+            var sValue = oInput.value;
+            timer1 = setTimeout(function() {
+                timer = setInterval(function() {
+                    oInput.value = ++sValue;
+                }, 100);
+            }, 500)
+        };
+        oBtn.onmouseup = function() {
+            clearInterval(timer);
+            clearTimeout(timer1);
+        };
+
+    };
+    </script>
+</head>
+
+<body>
+    <input type="text" value="0" id="input">
+    <input type="button" value="click" id="j-btn">
+</body>
+
+</html>

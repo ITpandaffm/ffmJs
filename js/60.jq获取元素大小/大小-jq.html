@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的jq获取元素大小</title>
+<style>
+* { margin: 0; padding: 0; }
+div { border:10px solid red; padding:15px; width: 400px; height: 400px; position: fixed; top: 0; left: 0; background-color: #ccc; font-size:50px; }
+</style>
+</head>
+<body>
+	<div>
+		
+	</div>
+	<script src="jquery_1.12.4.js"></script>
+	<script>
+		// alert($('div').width());
+		// alert($('div').outerWidth());
+		alert($('div').innerWidth());
+	</script>
+</body>
+</html>

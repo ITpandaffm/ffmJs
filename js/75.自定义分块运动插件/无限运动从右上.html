@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分块运动</title>
+<style>
+* { margin: 0; padding: 0; }
+div { position: relative; width: 700px; height: 400px; margin: 50px auto; }
+span { opacity: 0; position: absolute; background-image: url(images/1.jpg); background-repeat: no-repeat; }
+</style>
+</head>
+<body>
+    <div>
+        <img src="images/0.jpg" width="700" height="400">
+    </div>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+    var aPigPath = [
+        'images/0.jpg',
+        'images/1.jpg',
+        'images/2.jpg'
+    ];
+    var nCurPic = 0;
+    var nW = 700;
+    var nH = 400;
+    var nCols = 10;
+    var nRows = 10;
+    var nItemW = nW / nCols;
+    var nItemH = nH / nRows;
+    var bIsAnimating = false;
+    for (var i = 0; i < nRows; i++) {
+        for (var j = 0; j < nCols; j++) {
+            var oSpan = $('<span></span>');
+            oSpan.css({
+                width: nItemW + 'px',
+                height: nItemH + 'px',
+                left: j * nItemW + 'px',
+                top: i * nItemH + 'px',
+                'background-position': '-' + (j * nItemW) + 'px -' + (i * nItemH) + 'px'
+            }).attr({
+                'data-r': i,
+                'data-c': j
+            });
+            oSpan.appendTo('div');
+        }
+    }
+    $(document).click(function(event) {
+        if (bIsAnimating) {
+            return; //如果正在进行动画，则点击无效（不能使用stop()，不然显示卡主
+        }
+        bIsAnimating = true;
+        nCurPic++;
+        var aSpan = $('span');
+
+        aSpan.each(function(index) {
+            var oSpan = $(this);
+            var c = parseInt(oSpan.attr('data-c'));
+            var r = parseInt(oSpan.attr('data-r'));
+            var nTimeout = c-r;
+            setTimeout(function() {
+                oSpan.animate({
+                    opacity: 1
+                }, {
+                    complete: function() {
+                        var r = parseInt(oSpan.attr('data-r'));
+                        var c = parseInt(oSpan.attr('data-c'));
+                        if (r == nRows - 1 && c == 0) { //这里判断要注意，下标是从0开始的
+                            $('img').attr('src', aPigPath[nCurPic % aPigPath.length]);
+                            aSpan.css({
+                                'background-image': 'url(' + aPigPath[(nCurPic + 1) % aPigPath.length] + ')',
+                                opacity: 0
+                            });
+                            bIsAnimating = false;
+                        }
+
+                    }
+                });
+            }, (nCols - nTimeout) * 100);
+        });
+    });
+    </script>
+</body>
+
+
+
+
+
+</html>

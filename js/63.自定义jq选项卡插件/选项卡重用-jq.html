@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的选项卡插件</title>
+<style>
+* { margin: 0; padding: 0; }
+body { padding-bottom: 500px; }
+/*第一块*/
+.box1 input { width: 100px; height: 30px; background-color: transparent; border:1px solid #ccc; cursor:pointer; outline: none; }
+.box1 input.active { background-color: yellow; }
+.box1 div { display: none; width:310px; height: 150px; border:5px solid #000; line-height: 150px; text-align: center; font-size:50px; }
+.box1 div.active { display: block; }
+
+/*第二块*/
+.box2 { margin-top: 50px; }
+.box2 .btn { display: inline-block; width: 100px; height: 30px; background-color: transparent; border:1px solid #ccc; cursor:pointer; outline: none; text-align: center; }
+.box2 .btn.active { background-color: pink; }
+.box2 .cont {display: none; width:310px; height: 150px; border:5px solid #000; line-height: 150px; text-align: center; font-size:50px;}
+.box2 .cont.active { display: block; }
+
+/*第三块*/
+.box3 { margin-top: 50px; }
+.box3 .btn { display: inline-block; width: 100px; height: 30px; background-color: transparent; border:1px solid #ccc; cursor:pointer; outline: none; text-align: center; }
+.box3 .btn.active { background-color: green; }
+.box3 .cont {display: none; width:310px; height: 150px; border:5px solid #000; line-height: 150px; text-align: center; font-size:50px;}
+.box3 .cont.active { display: block; }
+</style>
+</head>
+<body>
+	<!-- 第一块 begin -->
+	<div class="box1 j-tab" data-type="mouseover">
+		<input type="button" value="新闻" class="active j-btn">
+		<input type="button" value="体育" class="j-btn">
+		<input type="button" value="娱乐" class="j-btn">
+
+		<div class="active j-cont">新闻</div>
+		<div class="j-cont">体育</div>
+		<div class="j-cont">娱乐</div>
+	</div>
+	<!-- 第一块 end -->
+
+	<!-- 第二块 begin -->
+	<section class="box2 j-tab" data-type="click">
+		<a href="javascript:;" class="btn active j-btn">新闻</a>
+		<a href="javascript:;" class="btn j-btn">体育</a>
+
+		<p class="active cont j-cont">新闻</p>
+		<p class="cont j-cont">体育</p>
+	</section>
+	<!-- 第二块 end -->
+
+
+
+
+
+
+
+
+
+
+	<!-- 第三块 begin -->
+	<section class="box3 j-tab" data-type="mouseover">
+		<span class="btn active j-btn">新闻</span>
+		<span class="btn j-btn">体育</span>
+		<span class="btn j-btn">娱乐</span>
+		<span class="btn j-btn">大电影</span>
+
+		<p class="active cont j-cont">新闻</p>
+		<p class="cont j-cont">体育</p>
+		<p class="cont j-cont">娱乐</p>
+		<p class="cont j-cont">大电影</p>
+	</section>
+	<!-- 第三块 end -->
+	<script src="jquery_1.12.4.js"></script>
+	<script src="jquery-tab-1.4.js"></script>
+	<script>
+		$('.j-tab').tab();
+	</script>
+</body>
+</html>

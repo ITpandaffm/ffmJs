@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>简单游戏</title>
+<style>
+*{ margin:0; padding:0;}
+#box1{ width:300px; height:300px; border:10px solid #ff0; background:#ccc; position:absolute; left:50%; margin-left:-150px; top:50%; margin-top:-150px; text-align:center;}
+#box1 img{ width:48px; height:60px; position:absolute; top:100px; left:50%; margin-left:-24px;}
+</style>
+<script>
+window.onload=function (){
+	var oImg=document.getElementById('img1');
+	var arr1=['a.png', 'b.png', 'c.png'];
+	var arr2=['fight01.png', 'fight02.png', 'fight03.png', 'fight04.png'];
+	var n=1;
+	
+	setInterval(function (){
+		oImg.src=arr1[n++%arr1.length];
+	}, 200);
+	
+	var oDiv=document.getElementById('box1');
+	
+	oDiv.onclick=function (){
+		var timer=setInterval(function (){
+			oImg.src=arr2[n++%arr1.length];
+			
+			setTimeout(function (){
+				clearInterval(timer);
+			}, 400);
+		}, 60);
+	};
+};
+</script>
+</head>
+
+<body>
+<div id="box1">
+	<img src="a.png" id="img1">
+</div>
+</body>
+</html>
+
+
+
+
+
+
+

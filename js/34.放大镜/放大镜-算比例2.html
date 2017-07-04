@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的放大镜</title>
+<style>
+* { margin: 0; padding: 0; }
+div { position: absolute; top: 50px; width: 400px; height: 400px; }
+#div1 { left: 50px; }
+#div1 span { display: none; position: absolute; top: 0; left: 0; width: 100px; height: 100px; background-color: yellow; opacity: .5; }
+#div2 { display: none; left: 500px; background:url(images/big.jpg) no-repeat -20px -30px; }
+</style>
+<script>
+window.onload=function (){
+	//还有bug， 右边放大的内容与左边放大框的内容不符合
+	var oDiv1=document.getElementById('div1');
+	var oDiv2=document.getElementById('div2');
+	var oSpan=document.getElementById('span1');
+	var oImg=document.getElementById('img1');
+
+	var nMaxTop=0;
+	var nMaxLeft=0;
+	var nMaxImgLeft=0;
+	var nMaxImgTop=0;
+
+	oDiv1.onmouseover=function (){
+		oDiv2.style.display='block';
+		oSpan.style.display='block';
+
+		nMaxTop=oDiv1.offsetHeight-oSpan.offsetHeight;
+		nMaxLeft=oDiv1.offsetWidth-oSpan.offsetWidth;
+		nMaxImgLeft=800-oDiv2.offsetWidth;
+		nMaxImgTop=800-oDiv2.offsetHeight;
+	};
+
+	oDiv1.onmouseout=function (){
+		oDiv2.style.display='none';
+		oSpan.style.display='none';
+	};
+
+	oDiv1.onmousemove=function (ev){
+		var oEvent=ev || event;
+		var left=oEvent.clientX - oDiv1.offsetLeft - oSpan.offsetWidth/2;
+		var top=oEvent.clientY - oDiv1.offsetTop - oSpan.offsetHeight/2;
+
+		if (top < 0)
+		{
+			top=0;
+		}
+		else if (top > nMaxTop)
+		{
+			top=nMaxTop;
+		}
+
+		if (left < 0)
+		{
+			left=0;
+		}
+		else if (left > nMaxLeft)
+		{
+			left=nMaxLeft;
+		}
+
+
+		oSpan.style.left=left+'px';
+		oSpan.style.top=top+'px';
+
+
+		// Ëã±ÈÀý a1/b1=a2/b2
+		var x=nMaxImgLeft * (left/nMaxLeft);
+		var y=nMaxImgTop * (top/nMaxTop);
+		oDiv2.style.backgroundPosition=-x+'px -'+y+'px';
+	};
+};
+</script>
+</head>
+<body>
+	<div id="div1">
+		<img src="images/small.jpg" id="img1">
+		<span id="span1"></span>
+	</div>
+	<div id="div2"></div>
+</body>
+</html>

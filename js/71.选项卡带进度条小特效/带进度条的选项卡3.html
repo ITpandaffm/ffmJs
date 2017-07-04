@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的选项卡带进度条有趣小特效</title>
+<style>
+* { margin: 0; padding: 0; }
+div { overflow: hidden; position: relative; width: 400px; height: 200px; border:5px solid red; margin: 50px auto; }
+li { list-style:none; }
+div ul { position: absolute; top: 0; left: 0; }
+ul li { width: 400px; height: 200px; font-size: 50px; line-height: 200px; text-align: center; }
+div ol { position: absolute; bottom: 30px; left: 50%; }
+ol li { position: relative; left: -50%; float: left; width: 40px; height: 20px; background-color: #999; margin-right:10px; }
+ol span { display: block; height: 100%; width: 0; background-color: #fff; }
+</style>
+</head>
+<body>
+    <div>
+    	<ul>
+    		<li style="background-color: #ccc;">0</li>
+    		<li style="background-color: blue;">1</li>
+    		<li style="background-color: pink;">2</li>
+    		<li style="background-color: yellow;">3</li>
+    	</ul>
+    	<ol>
+    		<li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+    	</ol>
+    </div>
+	<script src="jquery-1.12.4.js"></script>
+    <script>
+        var aSpan=$('span');
+        var oUl=$('ul');
+
+        var n=0;
+        next();
+
+        function next()
+        {
+            aSpan.css({width: 0});
+            aSpan.eq(n%aSpan.length).animate({
+                width: '100%'
+            }, {
+                duration: 1200,
+                complete: function (){
+                    n++;
+
+                    oUl.animate({
+                        top: -200*(n%aSpan.length)+'px'
+                    });
+                    next();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

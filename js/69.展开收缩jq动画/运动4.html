@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的展开收缩</title>
+<style>
+* { margin: 0; padding: 0; }
+input { position: absolute; top: 10px; left: 50px; height: 30px; width: 80px; }
+#div1 { margin: 50px auto; width: 0; height: 100px; background-color: #ccc; }
+</style>
+</head>
+<body>
+	<input type="button" value="aa" id="btn">
+	<div id="div1"></div>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+	//要记住动画有个队列，每次开始新动画之前都要通过stop()方法清除队列
+		$('input').hover(function (){
+			$('div').stop().animate({width:'100px'});
+		}, function (){
+			$('div').stop().animate({width:'0'});
+		});
+	</script>
+</body>
+</html>

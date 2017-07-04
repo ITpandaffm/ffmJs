@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        position: relative;
+        background-image: url('简单游戏/background.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+    
+    #div1 {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        width: 100px;
+        height: 100px;
+        /*background: #ccc;*/
+    }
+    
+    img {
+        width: 100px;
+        height: 100px;
+    }
+    </style>
+    <script>
+    window.onload = function() {
+        var oDiv = document.getElementById('div1');
+        var left = 100;
+        var top = document.documentElement.clientHeight-200;
+        var timer = null;
+
+        var oImg = document.getElementById('img1');
+        var arr1 = ['简单游戏/a.png', '简单游戏/b.png', '简单游戏/c.png'];
+        var arr2 = ['简单游戏/fight01.png', '简单游戏/fight02.png', '简单游戏/fight03.png', '简单游戏/fight04.png'];
+        var n = 1;
+
+        var bRight = false,
+            bLeft = false,
+            bUp = false,
+            bDown = false;
+
+        setInterval(function() {
+            if (bRight) {
+                if (left<document.documentElement.clientWidth) {
+                    left += 5;
+                }
+            }
+            if (bLeft) {
+                if (left>0) {
+                     left -= 5;
+                }
+            }
+            if (bUp) {
+                if (top>document.documentElement.clientHeight-200) {
+                     top -= 5;
+                }
+            }
+            if (bDown) {
+                if (top<document.documentElement.clientHeight-120) {
+                          top += 5;          
+                }
+            }
+            oDiv.style.left = left + 'px';
+            oDiv.style.top = top + 'px';
+        }, 30);
+
+        document.onkeydown = function (ev) {
+            var oEvent = ev || event;
+            switch (oEvent.keyCode) {
+                case 37:
+                    bLeft=true;
+                    break;
+                case 38:
+                    bUp=true;
+                    break;
+                case 39:
+                    bRight=true;
+                    break;
+                case 40:
+                    bDown=true;
+                    break;
+                case 32:
+                    kick();
+                    break;
+                default:
+                    // statements_def
+                    break;
+            }
+        };
+
+        function kick () {
+            var timer=setInterval(function (){
+            oImg.src=arr2[n++%arr1.length];
+    
+            setTimeout(function (){
+                clearInterval(timer);
+            }, 400);
+        }, 60);
+        }
+        document.onkeyup = function(ev) {
+            var oEvent = ev || event;
+            switch (oEvent.keyCode) {
+                case 37:
+                    bLeft=false;
+                    break;
+                case 38:
+                    bUp=false;
+                    break;
+                case 39:
+                    bRight=false;
+                    break;
+                case 40:
+                    bDown= false;
+                    break;
+                default:
+                    // statements_def
+                    break;
+            }
+        };
+
+        setInterval(function() {
+            oImg.src = arr1[n++ % arr1.length];
+        }, 200);
+
+    };
+    </script>
+</head>
+
+<body>
+    <div id="div1"><img src="简单游戏/a.png" alt="" id="img1"></div>
+</body>
+
+</html>

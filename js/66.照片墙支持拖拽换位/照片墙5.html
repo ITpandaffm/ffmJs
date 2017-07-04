@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的照片墙</title>
+<style>
+* { margin: 0; padding: 0; }
+ul { width: 510px; height: 510px; margin: 50px auto; border:1px solid #000; }
+li { position: relative; float:left; width: 150px; height: 150px; margin: 10px; background-color: #ccc; list-style: none; font-size:30px; }
+img { display: block; width: 100%; }
+span { position: absolute; top: 0; left: 0; width: 100%; height: 100%; line-height: 150px; font-size: 50px; color: red; background-color: rgba(255,255,255, 0.5); text-align: center; }
+.active { border:5px dashed red; box-sizing: border-box; }
+</style>
+</head>
+<body>
+	<ul>
+		<li><img src="cat/1.jpg" alt=""></li>
+		<li><img src="cat/2.jpg" alt=""></li>
+		<li><img src="cat/3.jpg" alt=""></li>
+		<li><img src="cat/4.jpg" alt=""></li>
+		<li><img src="cat/5.jpg" alt=""></li>
+		<li><img src="cat/6.jpg" alt=""></li>
+		<li><img src="cat/7.jpg" alt=""></li>
+		<li><img src="cat/8.jpg" alt=""></li>
+		<li><img src="cat/9.jpg" alt=""></li>
+	</ul>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		var aLi=$('li');
+
+		// 测试，与效果无关
+		aLi.each(function (index){
+			var oSpan=$('<span>'+index+'</span>');
+			oSpan.appendTo(this);
+		});
+
+		// 布局转换
+		var aPos=[];
+		aLi.each(function (){
+			aPos.push({
+				left:$(this).offset().left,
+				top:$(this).offset().top
+			});
+		});
+
+		aLi.each(function (index){
+			$(this).css({
+				position:'absolute',
+				left:aPos[index].left+'px',
+				top:aPos[index].top+'px',
+				margin:0
+			});
+		});
+
+		// 拖拽
+		aLi.each(function (){
+			drag($(this));
+		});
+
+		var zIndex=1;
+		function drag(obj)
+		{
+			obj.mousedown(function (ev){
+				var oNear=null;
+				var disX=ev.clientX-obj.offset().left;
+				var disY=ev.clientY-obj.offset().top;
+				zIndex++;
+				obj.css('z-index', zIndex);
+
+				$(document).mousemove(move);
+				$(document).mouseup(up);
+
+				function move(ev)
+				{
+					var left=ev.clientX-disX;
+					var top=ev.clientY-disY;
+
+					obj.css({
+						left:left+'px',
+						top:top+'px'
+					});
+
+					// 找最近
+					oNear=findNear(obj);
+					aLi.removeClass('active');
+					if (oNear)
+					{
+						oNear.addClass('active');
+					}
+				}
+
+				function up()
+				{
+					$(document).off('mousemove', move);
+					$(document).off('mouseup', up);
+
+					if (oNear)
+					{
+						var left1=aPos[oNear.index()].left;
+						var top1=aPos[oNear.index()].top;
+						var left2=aPos[obj.index()].left;
+						var top2=aPos[obj.index()].top;
+
+						obj.stop().animate({
+							left:left1+'px',
+							top:top1+'px'
+						});
+
+						oNear.stop().animate({
+							left:left2+'px',
+							top:top2+'px'
+						});
+
+						aPos[obj.index()].left=left1;
+						aPos[obj.index()].top=top1;
+
+						aPos[oNear.index()].left=left2;
+						aPos[oNear.index()].top=top2;
+
+						aLi.removeClass('active');
+					}
+					else
+					{
+						// 会原位置
+						var left=aPos[obj.index()].left;
+						var top=aPos[obj.index()].top;
+						obj.stop().animate({
+							left:left+'px',
+							top:top+'px'
+						}, {
+							duration:100
+						});
+					}
+				}
+
+				return false;
+			});
+		}
+
+		function bundTest(obj1, obj2)
+		{
+			obj1=$(obj1);
+			obj2=$(obj2);
+
+			var l1=obj1.offset().left;
+			var t1=obj1.offset().top;
+			var r1=l1+obj1.outerWidth();
+			var b1=t1+obj1.outerHeight();
+			
+			var t2=obj2.offset().top;
+			var l2=obj2.offset().left;
+			var r2=l2+obj2.outerWidth();
+			var b2=t2+obj2.outerHeight();
+
+			if (l2>r1 || t2>b1 || l1>r2 || t1>b2)
+			{
+				// 没碰到
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+
+		function findNear(obj)
+		{
+			var nMin=99999;
+			var oNear=null;
+			aLi.each(function (){
+				if (this != obj[0])
+				{
+					if (bundTest(this, obj[0]))
+					{
+						// 碰上了
+						var nTmpMin=getDis($(this), obj);
+						if (nTmpMin < nMin)
+						{
+							nMin=nTmpMin;
+							oNear=$(this);
+						}
+					}
+				}
+			});
+
+			return oNear;
+		}
+
+		function getDis(obj1, obj2)
+		{
+			var t1=obj1.offset().top+obj1.height()/2;
+			var t2=obj2.offset().top+obj2.height()/2;
+
+			var l1=obj1.offset().left+obj1.width()/2;
+			var l2=obj2.offset().left+obj2.width()/2;
+
+			var a=(t1-t2);
+			var b=(l1-l2);
+
+			return Math.sqrt(a*a+b*b);
+		}
+	</script>
+</body>
+</html>

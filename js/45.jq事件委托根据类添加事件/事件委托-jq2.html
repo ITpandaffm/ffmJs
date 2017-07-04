@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的jq事件委托根据类添加事件</title>
+<style>
+li { height: 30px; line-height: 30px; margin: 10px; background-color: #ccc; }
+</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li class="active"></li>
+		<li></li>
+	</ul>
+	<script src="jquery_1.12.4.js"></script>
+	<script>
+		$('');
+		$('ul').on('click', '.active', function (){
+			$(this).css('background', 'red');
+		});
+	</script>
+</body>
+</html>

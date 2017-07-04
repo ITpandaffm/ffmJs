@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>分块运动</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    div {
+        position: relative;
+        width: 700px;
+        height: 400px;
+        margin: 50px auto;
+    }
+    
+    span {
+        opacity: 0;
+        position: absolute;
+        background-image: url(images/1.jpg);
+        background-repeat: no-repeat;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="images/0.jpg" width="700" height="400">
+    </div>
+    <script src="jquery-1.12.4.js"></script>
+    <script src="jquery.changePic.1.0.js"></script>
+    <script>
+    //函数参数列表
+    // function changPic(nRows,nCols,sMode,aPics,speed)
+
+    //参数
+    // 正斜mid-LDtoRU 反斜mid-LUtoRD 
+    //左向右LtoR 右向左RtoL
+    // 上向下TtoD 下向上DtoT 
+    // LD左下 LU左上 RD右下 RU右上
+    var aAffectRand = ['mid-LDtoRU', 'mid-LUtoRD', 'LtoR', 'RtoL', 'TtoD', 'DtoT', 'LD', 'LU', 'RD', 'RU'];
+
+    var aPigPath = [
+        'images/0.jpg',
+        'images/1.jpg',
+        'images/2.jpg'
+    ];
+        $('img').changePic(15, 15, aAffectRand[1], aPigPath, 100);
+
+    function rnd(n, m) {
+        return parseInt(Math.random() * (m - n)) + n;
+    }
+    </script>
+</body>
+
+</html>

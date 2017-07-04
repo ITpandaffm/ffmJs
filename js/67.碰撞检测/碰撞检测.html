@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的碰撞检测</title>
+<style>
+* { margin: 0; padding: 0; }
+#div1 { position: absolute; top: 50px; left: 50px; z-index: 1; width: 100px; height: 100px; background-color: #ccc; }
+#div2 { position: absolute; top: 150px; left: 350px; width: 300px; height: 300px; background-color: green; }
+</style>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		var oDiv1=$('#div1');
+		var oDiv2=$('#div2');
+		oDiv1.mousedown(function (ev){
+			var disX=ev.clientX-oDiv1.offset().left;
+			var disY=ev.clientY-oDiv1.offset().top;
+
+			$(document).mousemove(move);
+			$(document).mouseup(up);
+
+			function move(ev)
+			{
+				var left=ev.clientX-disX;
+				var top=ev.clientY-disY;
+
+				oDiv1.css({
+					left:left+'px',
+					top:top+'px'
+				});
+
+				// 碰撞检测
+				var l1=oDiv1.offset().left;
+				var t1=oDiv1.offset().top;
+				var r1=l1+oDiv1.outerWidth();
+				var b1=t1+oDiv1.outerHeight();
+				
+				var t2=oDiv2.offset().top;
+				var l2=oDiv2.offset().left;
+				var r2=l2+oDiv2.outerWidth();
+				var b2=t2+oDiv2.outerHeight();
+
+				if (l2>r1 || t2>b1 || l1>r2 || t1>b2)
+				{
+					// 没碰到
+					oDiv2.css('background', 'green');
+				}
+				else
+				{
+					oDiv2.css('background', 'yellow');
+				}
+			}
+
+			function up()
+			{
+				$(document).off('mousemove', move);
+				$(document).off('mouseup', up);
+			}
+
+			return false;
+		});
+	</script>
+</body>
+</html>

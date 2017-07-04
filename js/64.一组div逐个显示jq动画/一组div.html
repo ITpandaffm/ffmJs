@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的一组div逐个显示</title>
+<style>
+* { margin: 0; padding: 0; }
+div { width: 100px; height: 100px; background-color: red; float: left; margin: 10px; opacity: 0; }
+</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		var n=0;
+
+		var timer=setInterval(function (){
+			$('div').eq(n).animate({opacity:1});
+			n++;
+			if (n == $('div').length)
+			{
+				clearInterval(timer);
+			}
+		}, 1000);
+
+	</script>
+</body>
+</html>

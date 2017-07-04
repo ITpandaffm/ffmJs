@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的事件捕获</title>
+<style></style>
+<script>
+window.onload=function (){
+	var oBtn=document.getElementById('btn');
+
+	 oBtn.addEventListener('click', function (){
+	 	alert('btn');
+	 }, true);
+
+	  document.addEventListener('click', function (){
+	 	alert('document');
+	 }, true);
+};
+</script>
+</head>
+<body>
+	<input type="button" value="a" id="btn">
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>ffm的展开收缩纵向</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    input {
+        position: absolute;
+        top: 10px;
+        left: 50px;
+        height: 30px;
+        width: 80px;
+    }
+    
+    #div1 {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 100px;
+        height: 0px;
+        background-color: #ccc;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="aa" id="btn">
+    <div id="div1"></div>
+    <script src="jquery-1.12.4.js"></script>
+    <script>
+    $('input').hover(function() {
+        $('div').stop().animate({
+            height: '100px'
+        });
+    }, function() {
+        $('div').stop().animate({
+            height: '0'
+        });
+    });
+    </script>
+</body>
+
+</html>

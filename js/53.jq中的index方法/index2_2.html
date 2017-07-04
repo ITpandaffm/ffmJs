@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的index方法</title>
+<style>
+li { background-color: #ccc; margin: 10px; }
+</style>
+</head>
+<body>
+	<ul>
+		<li>
+			<input type="button" value="0">
+		</li>
+		<li>
+			<span>sss</span>
+			<span>s2234234324ss</span>
+			<input type="button" value="1">
+		</li>
+		<li>
+<!-- 			<input type="button" value="2">
+ -->		</li>
+ 			<input type="button" value="2">
+
+	</ul>
+
+	<script src="jquery_1.12.4.js"></script>
+	<script>
+	//这里传入了input，注意与之前的不同，不是在同级里的input，隔壁村的input也被监测到了，外层的也被检测了。
+		$('li input').click(function (){
+			alert( $(this).index('input')  );
+		});
+		// $('input').click(function (){
+		// 	alert( $(this).index('input')  );
+		// });
+	</script>
+</body>
+</html>

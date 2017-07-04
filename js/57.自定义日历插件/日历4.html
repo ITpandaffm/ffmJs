@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>ffm的自定义日历插件</title>
+<style>
+input { width: 200px; height: 40px; display: block; margin: 50px auto; }
+</style>
+</head>
+<body>
+	<input type="text" id="t1">
+	<input type="text" id="t2">
+	<script src="calendar-v.0.2.js"></script>
+	<script>
+		var added=true;
+		var oT1=document.getElementById('t1');
+		calendar(oT1);
+
+		// $('#t1').calendar();
+
+		var oT2=document.getElementById('t2');
+		calendar(oT2);
+
+		// $('#t2').calendar();
+
+		/*
+			能选中日期，把选中的日期写在input中
+			2017年04月06日
+		*/
+	</script>
+</body>
+</html>
