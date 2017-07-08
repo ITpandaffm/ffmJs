@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>XMLHttpRequest</title>		
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+		if (window.XMLHttpRequest) {
+			var xhr = new XMLHttpRequest();
+		} else {
+			var xhr = new ActiveXObject('microsoft.XMLHTTP');
+		}
+		xhr.open('GET','./ajaxDemo.json?user=lily&password=12345&t='+new Date().getTime(),true);
+		xhr.send();
+
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState == 4) {
+				if (xhr.status == 200) {
+					var json1 = eval('('+xhr.responseText+')');
+					console.log(json1);
+					console.log(`name is ${json1.people[1].name}`);
+				}
+			}
+		};
+	</script>
+</body>
+</html>

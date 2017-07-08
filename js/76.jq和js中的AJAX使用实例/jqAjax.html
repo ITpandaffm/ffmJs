@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jaAjax</title>
+	<script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+	<input type="button" value="click" id="btn">
+	<div id="box"></div>
+	<form action="###">
+		<input type="text" name="user">
+		<input type="password" name="pass">
+		<select name="add" id="">
+			<option value="北京">北京</option>
+			<option value="上海">上海</option>
+			<option value="广州">广州</option>
+		</select>
+		<input type="submit" value="btn">
+	</form>
+	<script>
+		$(function(){
+			$('form').submit(function() {
+				var data = $('form').serialize();
+				console.log(data);
+				$.ajax({
+					type:'get',
+					url:'ajaxDemo.json',
+					// data:'user=lily&pass=213',
+					// data:{user:'lily',pass:'12345'},
+					data:data,
+					cache:false,
+					dataType:'json',
+					success:function(data){
+						console.log(data);
+					}
+				});
+				return false; 
+			});
+		});
+	</script>
+</body>
+</html>

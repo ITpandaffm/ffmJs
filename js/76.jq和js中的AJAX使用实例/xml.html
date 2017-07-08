@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>xml</title>
+</head>
+<body>
+	<div id="box"></div>
+
+-----以下是模拟数据---------
+<people>
+	<one>
+		<name>lily</name>
+		<age>22</age>
+		<sex>女</sex>
+	</one>
+	<one>
+		<name>lucy</name>
+		<age>23</age>
+		<sex>女</sex>
+	</one>
+	<one>
+		<name>join</name>
+		<age>24</age>
+		<sex>男</sex>
+	</one>
+</people>
+<script>
+	var oBox = document.getElementById('box');
+	var aPeople = document.getElementsByTagName('people');
+	var aOne = document.getElementsByTagName('one');
+	// console.log(aOne[0].innerHTML);
+	var text = '';
+	for (var i = 0; i < aOne.length; i++) {		
+		text+=aOne[i].children[0].innerHTML+'|'+aOne[i].children[1].innerHTML+'|'+aOne[i].children[2].innerHTML+'<br>';	
+	}
+	oBox.innerHTML = text;
+</script>
+</body>
+</html>

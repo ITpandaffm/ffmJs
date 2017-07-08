@@ -1,0 +1,19 @@
+{
+	"name":"lily",
+	"sex":"女",
+	"age":"20",
+	"a":null,
+	"b":true,
+	"c":false
+}
+
+// {
+// 	"name":"lucy",
+
+// 	"sex":"girl",
+// 	"add":{
+// 		"sheng":"beijing",
+// 		"shi":"北京"
+// 	},
+// 	"score":[12,23,34,45]
+// }

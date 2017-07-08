@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>json</title>
+
+</head>
+<body>
+	<script>
+		var json1 = { "name":"lily","sex":"女","age":23,"add":{ "sheng":"beijing" } };
+		var json2 = '{ "name":"lily","sex":"女","age":23 }';
+		// alert(json1.name);
+		var json_new = eval('('+json2+')');
+		alert(json_new.sex);
+		alert(json1.add.sheng);
+		for(var i in json1) {
+			console.log(i+ ':'+json1[i]);
+		}
+	</script>
+</body>
+</html>

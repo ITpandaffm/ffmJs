@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jqGetScript</title>
+	<script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+	<input type="button" value="click" id="btn">
+	<div id="box"></div>
+	<script>
+		$(function(){
+			$('#btn').click(function(event) {
+				$.getScript('./test.js',{"a":"b",b:[1,2]},function(data, textStatus){
+					console.log(data);
+					console.log(textStatus);
+				});
+			});
+		});
+	</script>
+</body>
+</html>

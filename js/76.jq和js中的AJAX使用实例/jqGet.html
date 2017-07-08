@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jqGet</title>
+	<script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+	<input type="button" value="click" id="btn">
+	<div id="box"></div>
+	<script>
+		$(function(){
+			$('#btn').click(function(event) {
+				$.get('ajaxDemo.json', {name:'lily'}, function(data) {
+					alert(data); 
+				},'json');
+			});
+		});
+	</script>
+</body>
+</html>
